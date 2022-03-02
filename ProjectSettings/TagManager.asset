@@ -38,7 +38,10 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Distant Background
+    uniqueID: 2416739013
+    locked: 0
+  - name: Near Background
     uniqueID: 4238863831
     locked: 0
   - name: Default

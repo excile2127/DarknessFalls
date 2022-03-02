@@ -2,9 +2,13 @@
 
 Darkness Falls is a small-scale, sidescrolling platformer currently in development in Unity with an anticipated completion date of mid-April 2022.
 
-## Goal
+## Description
 
 My primary goal for Darkness Falls is to practice the fundamentals of gameplay programming. As such, I do not intend at this time for this project to become a standalone game, rather a demonstration of what I have learned thus far.
+
+Overall, I am planning on implementing many core platformer game elements, but with a small twist. Instead of having heath points or some other similar mechanism, the player will carry at torch to shed light on their environment. Over time, this torch will slowly lose brightness, and taking hits, falling off the map, or using special actions will expediate the loss of light. However, slaying enemies (and eventually, hitting bosses) will provide fuel to keep going. The player loses when their torch is extinguished.
+
+Art assets are in development and are slated to be finished by the beginning of April 2022. Until then, I will use placeholders that I find online or create myself. Because of this, I have decided to hold off on incorporating animations until then, instead focusing on gameplay mechanics. Although this project is mostly for practice, I still would like it to look nice once it has been completed.
 
 ### Roadmap
 
@@ -27,11 +31,11 @@ My primary goal for Darkness Falls is to practice the fundamentals of gameplay p
     - [x] Distant Backgrounds
 - [ ] Torch System
     - [ ] Lighting
-        - [ ] Static Lighting
+        - [x] Static Lighting
         - [ ] Script-Controlled Lighting
     - [ ] Torch Management
         - [ ] Basic Torch Management
-        - [ ] Torch Gain/Loss
+        - [ ] Active Torch Gain/Loss
             - [ ] Passive Torch Loss
             - [ ] On-Hit Torch Loss
             - [ ] Double Action Torch Loss
@@ -141,7 +145,9 @@ Once you have cloned the repository, you should install the version of Unity tha
 [Andrew Moreno](https://www.linkedin.com/in/andrew-moreno/)
 
 ## Version History
-
+* 0.1.1
+    * Static Lighting
+    * Temporary Sprites Placed for Sky and Treeline
 * 0.1
     * Initial Commit
     * Player Movement, Camera Control, and Dynamic Backgrounds
