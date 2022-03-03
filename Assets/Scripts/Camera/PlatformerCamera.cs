@@ -11,31 +11,49 @@ public class PlatformerCamera : MonoBehaviour
     [SerializeField] Transform trackingTarget;
 
     // Speed at which the camera follows the target
-    public float followSpeed = 9.6f;
+    public float followSpeed;
     // Boolean for whether the x-axis is locked
-    public bool xAxisLock = false;
+    public bool xAxisLock;
     // Boolean for whether the x-axis has a maximum value
-    public bool xHasMax = false;
+    public bool xHasMax;
     // Boolean for whether the x-axis has a minimum value
-    public bool xHasMin = true;
+    public bool xHasMin;
     // Maximum value for the x position
-    public float xMax = 0;
+    public float xMax;
     // Minimum value for the x position
-    public float xMin = 0;
+    public float xMin;
     // Offset in the x direction from the target
-    public float xOffset = 4.8f;
+    public float xOffset;
     // Boolean for whether the y-axis is locked
-    public bool yAxisLock = true;
+    public bool yAxisLock;
     // Boolean for whether the y-axis has a maximum value
-    public bool yHasMax = false;
+    public bool yHasMax;
     // Boolean for whether the x-axis has a minimum value
-    public bool yHasMin = false;
+    public bool yHasMin;
     // Maximum value for the y position
-    public float yMax = 0;
+    public float yMax;
     // Minimum value for the y position
-    public float yMin = 0;
+    public float yMin;
     // Offset in the y direction from the target
-    public float yOffset = 3.45f;
+    public float yOffset;
+
+    // Set default values for public variables
+    void Reset()
+    {
+        followSpeed = 9.6f;
+        xAxisLock = false;
+        xHasMax = false;
+        xHasMin = true;
+        xMax = 0;
+        xMin = 0;
+        xOffset = 4.8f;
+        yAxisLock = true;
+        yHasMax = false;
+        yHasMin = false;
+        yMax = 0;
+        yMin = 0;
+        yOffset = 3.45f;
+    }
 
     void Update()
     {

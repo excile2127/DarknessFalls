@@ -9,7 +9,7 @@ public class DistantBackground : MonoBehaviour
 {
     // Factor by how much to offset the camera's movement
     // A value of 1 follows the camera, values near one appear distant, and higher numbers have little effect
-    public float distanceDivisor = 1.25f;
+    public float distanceDivisor;
 
     // Transform component of the background sprite that this script is attached to
     private Transform backgroundTransform;
@@ -17,6 +17,12 @@ public class DistantBackground : MonoBehaviour
     private Transform cameraTransform;
     // X position of the camera in the last update
     private float cameraLastX;
+
+    // Set default values for public variables
+    void Reset()
+    {
+        distanceDivisor = 1.25f;
+    }
 
     void Start()
     {

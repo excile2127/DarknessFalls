@@ -726,8 +726,12 @@ GameObject:
   m_Component:
   - component: {fileID: 931581946}
   - component: {fileID: 931581947}
+  - component: {fileID: 931581948}
+  - component: {fileID: 931581951}
+  - component: {fileID: 931581950}
+  - component: {fileID: 931581949}
   m_Layer: 0
-  m_Name: Point Light 2D
+  m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,7 +745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931581945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -0.25, z: 0}
+  m_LocalPosition: {x: 1, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1413738868}
@@ -762,7 +766,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0.7529412, b: 0.5019608, a: 1}
+  m_Color: {r: 1, g: 0.6901961, b: 0.5019608, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: d7eda7fc0000000003a0141d1f61222d
@@ -788,6 +792,69 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &931581948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931581945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3ab2c0019020b429e778a0120425f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &931581949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931581945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1232fe321c0994d4285c3cc51024f053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  innerMinRadius: 0
+  innerMaxRadius: 10
+  outerMinRadius: 2.5
+  outerMaxRadius: 12.5
+  torchLossDuration: 1
+--- !u!114 &931581950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931581945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b450e30a3360a4d8da3f6323772049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxIntensityIncrease: 0.1
+  maxIntensityDecrease: 0.1
+  minFlickerDuration: 0.1
+  maxFlickerDuration: 0.2
+  maxGreenDecrease: 0.0625
+  maxGreenIncrease: 0.0625
+  flickering: 1
+--- !u!114 &931581951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931581945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246ffa61f63443841879dfa73dae3e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToExtinguish: 180
+  doubleActionTime: 30
+  losingTorch: 1
 --- !u!1 &1154057566
 GameObject:
   m_ObjectHideFlags: 0

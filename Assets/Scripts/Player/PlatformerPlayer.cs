@@ -10,15 +10,15 @@ using UnityEngine;
 public class PlatformerPlayer : MonoBehaviour
 {
     // Speed at which the player walks
-    public float walkSpeed = 7.2f;
+    public float walkSpeed;
     // Factor by which the walk speed is multiplied when dashing
-    public float dashMultiplier = 1.5f;
+    public float dashMultiplier;
     // Duration in seconds dashing lasts
-    public float dashDuration = 0.25f;
+    public float dashDuration;
     // Cooldown in seconds between dashes
-    public float dashCooldown = 0.5f;
+    public float dashCooldown;
     // Force applied vertically when jumping
-    public float jumpForce = 13.5f;
+    public float jumpForce;
 
     // Rigidbody component of the player
     private Rigidbody2D body;
@@ -44,6 +44,16 @@ public class PlatformerPlayer : MonoBehaviour
         DoubleDashing,
         DashCooldown,
         DoubleDashCooldown
+    }
+
+    // Set default values for public variables
+    void Reset()
+    {
+        walkSpeed = 7.2f;
+        dashMultiplier = 1.5f;
+        dashDuration = 0.25f;
+        dashCooldown = 0.5f;
+        jumpForce = 13.5f;
     }
 
     void Start()
@@ -159,6 +169,8 @@ public class PlatformerPlayer : MonoBehaviour
                     dashTimer = 0;
                     // Set the player's velocity to dash speed in the direction of their choice
                     body.velocity = new Vector2(Input.GetAxis("Horizontal") * walkSpeed * dashMultiplier, body.velocity.y);
+                    // Broadcast that the player is double dashing
+                    Messenger.Broadcast(GameEvent.DOUBLE_ACTION);
                     // Mark the player as double dashing
                     dashState = DashState.DoubleDashing;
                 }
@@ -184,6 +196,8 @@ public class PlatformerPlayer : MonoBehaviour
                     dashTimer = 0;
                     // Set the player's velocity to dash speed in the direction of their choice
                     body.velocity = new Vector2(Input.GetAxis("Horizontal") * walkSpeed * dashMultiplier, body.velocity.y);
+                    // Broadcast that the player is double dashing
+                    Messenger.Broadcast(GameEvent.DOUBLE_ACTION);
                     // Mark the player as double dashing
                     dashState = DashState.DoubleDashing;
                 }
@@ -245,6 +259,8 @@ public class PlatformerPlayer : MonoBehaviour
             {
                 // If not, take away the player's double jump
                 doubleJumpAvailable = false;
+                // Broadcast that the player is double jumping
+                Messenger.Broadcast(GameEvent.DOUBLE_ACTION);
             }
         }
     }
