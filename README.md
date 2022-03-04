@@ -127,7 +127,13 @@ Art assets are in development and are slated to be finished by the beginning of 
     - [ ] Scene Transition
 - [ ] Level Design
 
-## Checking Current Progress In-Game
+## Checking Current Progress
+
+### Development Screenshot
+
+![development screenshot](Assets/Sprites/currentProgress.png)
+
+### Running the Game
 
 Since the game is actively in development, it is not already built and is most easily viewed through the Unity editor. If you haven't already, install Unity Hub [here](https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.exe).
 
