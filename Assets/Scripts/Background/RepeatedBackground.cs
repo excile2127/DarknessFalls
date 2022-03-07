@@ -23,6 +23,8 @@ public class RepeatedBackground : MonoBehaviour
 
         // Create a new copy of the background game object for the left background sprite
         GameObject tempObject = GameObject.Instantiate(gameObject);
+        // Set the parent of the clone to the parent of the original
+        tempObject.transform.SetParent(gameObject.transform.parent.transform);
         // Disable this script to prevent infinite recursion
         tempObject.GetComponent<RepeatedBackground>().enabled = false;
         lBgTrans = tempObject.transform;
@@ -32,6 +34,8 @@ public class RepeatedBackground : MonoBehaviour
                                         cBgTrans.position.z);
         // Create a new copy of the background game object for the left background sprite
         tempObject = GameObject.Instantiate(gameObject);
+        // Set the parent of the clone to the parent of the original
+        tempObject.transform.SetParent(gameObject.transform.parent.transform);
         // Disable this script to prevent infinite recursion
         tempObject.GetComponent<RepeatedBackground>().enabled = false;
         rBgTrans = tempObject.transform;

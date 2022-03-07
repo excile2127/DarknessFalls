@@ -3,77 +3,116 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
+// Script to control the inner and outer radius of the in-game torch
 [RequireComponent(typeof(Light2D))]
 [RequireComponent(typeof(Torch))]
 public class TorchRadius : MonoBehaviour
 {
+    // Minimum of the point light's inner radius
     public float innerMinRadius;
+    // Maximum of the point light's inner radius
     public float innerMaxRadius;
+    // Minimum of the point light's outer radius
     public float outerMinRadius;
+    // Maximum of the point light's outer radius
     public float outerMaxRadius;
-    public float torchLossDuration;
+    // Time in seconds it takes for the point light to change radius
+    public float radiusChangeDuration;
 
+    // Reference to the point light
     private Light2D _pointLight;
+    // Reference to the torch
     private Torch _torch;
 
-    private float _curTorchlight;
-    private float _previousInnerRadius;
-    private float _nextInnerRadius;
-    private float _previousOuterRadius;
-    private float _nextOuterRadius;
+    // Last recorded inner radius of the point light
+    private float _lastInnerRadius;
+    // Target inner radius of the point light
+    private float _targetInnerRadius;
+    // Last recorded outer radius of the point light
+    private float _lastOuterRadius;
+    // Target outer radius of the point light
+    private float _targetOuterRadius;
+    // Interpolater for linear interpolation
     private float _interpolator;
 
+    // Initialize public variables
     void Reset()
     {
         innerMinRadius = 0.0f;
         innerMaxRadius = 10.0f;
         outerMinRadius = 2.5f;
         outerMaxRadius = 12.5f;
-        torchLossDuration = 0.5f;
+        radiusChangeDuration = 1.0f;
     }
 
+    // Add listeners for the torch being changed via the Messenger system on enable
+    void OnEnable()
+    {
+        Messenger.AddListener(GameEvent.TORCH_CHANGED, OnTorchChanged);
+    }
+
+    // Remove game event listeners on disable
+    void OnDisable()
+    {
+        Messenger.RemoveListener(GameEvent.TORCH_CHANGED, OnTorchChanged);
+    }
+
+    // Initialize private variables
     void Start()
     {
         _pointLight = GetComponent<Light2D>();
         _torch = GetComponent<Torch>();
 
-        _curTorchlight = _torch.Torchlight;
-        _previousInnerRadius = _pointLight.pointLightInnerRadius;
-        _nextInnerRadius = _pointLight.pointLightInnerRadius;
-        _previousOuterRadius = _pointLight.pointLightOuterRadius;
-        _nextOuterRadius = _pointLight.pointLightOuterRadius;
+        _lastInnerRadius = _pointLight.pointLightInnerRadius;
+        _targetInnerRadius = _pointLight.pointLightInnerRadius;
+        _lastOuterRadius = _pointLight.pointLightOuterRadius;
+        _targetOuterRadius = _pointLight.pointLightOuterRadius;
         _interpolator = 0.0f;
     }
 
+    // Update point light radius if needed
     void Update()
     {
+        // Check if interpolator is less than 1
+        // In other words, check if the target radius is not the current radius
         if (_interpolator < 1.0f)
         {
-            _pointLight.pointLightInnerRadius = Mathf.Lerp(_previousInnerRadius, _nextInnerRadius, _interpolator);
-            _pointLight.pointLightOuterRadius = Mathf.Lerp(_previousOuterRadius, _nextOuterRadius, _interpolator);
+            // Linearly interpolate inner and outer radius
+            _pointLight.pointLightInnerRadius = Mathf.Lerp(_lastInnerRadius, _targetInnerRadius, _interpolator);
+            _pointLight.pointLightOuterRadius = Mathf.Lerp(_lastOuterRadius, _targetOuterRadius, _interpolator);
 
-            _interpolator += Time.deltaTime / torchLossDuration;
+            // Update interpolator by time since last frame over the time in seconds it should take the point light to change radius
+            _interpolator += Time.deltaTime / radiusChangeDuration;
         }
+        // Otherwise, check if interpolator is greater than 1
+        // In other words, check if the target radius has been reached
         else if (_interpolator > 1.0f)
         {
-            _previousInnerRadius = _pointLight.pointLightInnerRadius;
-            _previousOuterRadius = _pointLight.pointLightOuterRadius;
+            // Set inner and outer radius to target radius
+            _pointLight.pointLightInnerRadius = _targetInnerRadius;
+            _pointLight.pointLightOuterRadius = _targetOuterRadius;
+
+            // Set last inner and outer radius to current radius
+            _lastInnerRadius = _pointLight.pointLightInnerRadius;
+            _lastOuterRadius = _pointLight.pointLightOuterRadius;
+
+            // Set interpolator to 1 to mark that no more change in radius is needed
             _interpolator = 1.0f;
         }
-        else
-        {
-            _pointLight.pointLightInnerRadius = _nextInnerRadius;
-            _pointLight.pointLightOuterRadius = _nextOuterRadius;
-        }
+    }
 
-        if (_curTorchlight != _torch.Torchlight)
-        {
-            _curTorchlight = _torch.Torchlight;
-            _previousInnerRadius = _pointLight.pointLightInnerRadius;
-            _nextInnerRadius = (innerMaxRadius - innerMinRadius) * _curTorchlight / _torch.TorchlightMax + innerMinRadius;
-            _previousOuterRadius = _pointLight.pointLightOuterRadius;
-            _nextOuterRadius = (outerMaxRadius - outerMinRadius) * _curTorchlight / _torch.TorchlightMax + outerMinRadius;
-            _interpolator = 0.0f;
-        }
+    // Function for when a change in torchlight has been broadcasted
+    void OnTorchChanged()
+    {
+        // Set last inner and outer radius to current radius
+        _lastInnerRadius = _pointLight.pointLightInnerRadius;
+        _lastOuterRadius = _pointLight.pointLightOuterRadius;
+        
+        // Set target inner and outer radius to a value dictated by current torchlight
+        _targetInnerRadius = (innerMaxRadius - innerMinRadius) * _torch.Torchlight / _torch.TorchlightMax + innerMinRadius;
+        _targetOuterRadius = (outerMaxRadius - outerMinRadius) * _torch.Torchlight / _torch.TorchlightMax + outerMinRadius;
+
+        // Set interpolator to 0 to mark that change in radius is needed
+        _interpolator = 0.0f;
     }
 }

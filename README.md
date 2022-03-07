@@ -6,7 +6,7 @@ Darkness Falls is a small-scale, sidescrolling platformer currently in developme
 
 My primary goal for Darkness Falls is to practice the fundamentals of gameplay programming. As such, I do not intend at this time for this project to become a standalone game, rather a demonstration of what I have learned thus far.
 
-Overall, I am planning on implementing many core platformer game elements, but with a small twist. Instead of having heath points or some other similar mechanism, the player will carry at torch to shed light on their environment. Over time, this torch will slowly lose brightness, and taking hits, falling off the map, or using special actions will expediate the loss of light. However, slaying enemies will provide fuel to keep going. The player loses when their torch is extinguished.
+Overall, I am planning on implementing many core platformer game elements, but with a small twist. Instead of having heath points or some other similar mechanism, the player will carry a torch to shed light on their environment. Over time, this torch will slowly lose brightness, and taking hits, falling off the map, or using special actions will expediate the loss of light. However, slaying enemies will provide fuel to keep going. The player loses when their torch is extinguished. Lastly, passive loss of torchlight will only put the torch to minimal light, but will not cause the torch to be extinguished.
 
 Art assets are in development and are slated to be finished by the beginning of April 2022. Until then, I will use placeholders that I find online or create myself. Because of this, I have decided to hold off on incorporating animations until then, instead focusing on gameplay mechanics. Although this project is mostly for practice, I still would like it to look nice once it has been completed.
 
@@ -37,9 +37,9 @@ Art assets are in development and are slated to be finished by the beginning of 
         - [x] Basic Torch Management
         - [x] Torch Gain/Loss
             - [x] Passive Torch Loss
-            - [ ] On-Hit Torch Loss
+            - [x] On-Hit Torch Loss
             - [x] Double Action Torch Loss
-            - [ ] On-Slay Torch Gain
+            - [x] On-Slay Torch Gain
 - [ ] Universal Combat Mechanics
     - [ ] Hitboxes
     - [ ] Hurtboxes
@@ -151,17 +151,23 @@ Once you have cloned the repository, you should install the version of Unity tha
 [Andrew Moreno](https://www.linkedin.com/in/andrew-moreno/)
 
 ## Version History
+* 0.2
+    * Completion of the Torch System
+        * Includes Messenger System for both the Torch Controller and the Torch Radius Scripts
+    * Moved Camera Script's Update to Late Update to prevent jittering
+    * Changed background sprite clones to have the same parent
+        * Might expand on this in the future to create a parent object for the original and clones
+    * Miscellaneous script organization
 * 0.1.2
     * Script-Controlled Lighting
     * Basic Torch Management
     * Passive Torch Loss
     * Double Action Torch Loss
-    * Miscellaneous Script Organization
-    * Miscellaneous Bug Fixes
-    * NOTE: New scripts currently uncommented, but will be on the next commit
+    * Miscellaneous script organization
+    * Miscellaneous bug fixes
 * 0.1.1
     * Static Lighting
-    * Temporary Sprites Placed for Sky and Treeline
+    * Temporary sprites placed for Sky and Treeline
 * 0.1
     * Initial Commit
     * Player Movement, Camera Control, and Dynamic Backgrounds

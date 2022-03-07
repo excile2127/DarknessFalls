@@ -55,7 +55,7 @@ public class PlatformerCamera : MonoBehaviour
         yOffset = 3.45f;
     }
 
-    void Update()
+    void LateUpdate()
     {
         // Find the x and y values for the target position the camera should move to
         float xTarget = trackingTarget.position.x + xOffset;

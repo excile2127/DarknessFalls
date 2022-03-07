@@ -726,10 +726,10 @@ GameObject:
   m_Component:
   - component: {fileID: 931581946}
   - component: {fileID: 931581947}
-  - component: {fileID: 931581948}
   - component: {fileID: 931581951}
   - component: {fileID: 931581950}
   - component: {fileID: 931581949}
+  - component: {fileID: 931581948}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -801,18 +801,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 931581945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e3ab2c0019020b429e778a0120425f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &931581949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931581945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1232fe321c0994d4285c3cc51024f053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -820,8 +808,8 @@ MonoBehaviour:
   innerMaxRadius: 10
   outerMinRadius: 2.5
   outerMaxRadius: 12.5
-  torchLossDuration: 1
---- !u!114 &931581950
+  radiusChangeDuration: 1
+--- !u!114 &931581949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -833,14 +821,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b450e30a3360a4d8da3f6323772049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIntensityIncrease: 0.1
-  maxIntensityDecrease: 0.1
+  maxIntensityIncrease: 0.05
+  maxIntensityDecrease: 0.05
+  maxGreenIncrease: 0.0625
+  maxGreenDecrease: 0.0625
   minFlickerDuration: 0.1
   maxFlickerDuration: 0.2
-  maxGreenDecrease: 0.0625
-  maxGreenIncrease: 0.0625
   flickering: 1
---- !u!114 &931581951
+--- !u!114 &931581950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -852,9 +840,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246ffa61f63443841879dfa73dae3e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToExtinguish: 180
-  doubleActionTime: 30
-  losingTorch: 1
+  torchDuration: 180
+  doubleActionTimeLoss: 15
+  playerHitTimeLoss: 30
+  playerFellTimeLoss: 60
+  enemySlayedTimeGain: 30
+  staticTorch: 0
+--- !u!114 &931581951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931581945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3ab2c0019020b429e778a0120425f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1154057566
 GameObject:
   m_ObjectHideFlags: 0
