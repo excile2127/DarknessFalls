@@ -141,6 +141,10 @@ To get the project folder, you'll need to clone the project. Note, that this pro
 
 Once you have cloned the repository, you should install the version of Unity that is listed below in the dependencies section. Then, open the project through Unity.
 
+### I Just Want to See the Scripts
+
+If you just want to see an example of my coding, scripts are located in the Assets folder under Scripts, then organized by their respective categories :P
+
 ### Dependencies
 
 * [GitLFS](https://git-lfs.github.com/)
