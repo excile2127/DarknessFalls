@@ -182,6 +182,7 @@ Next, open the project folder through Unity Hub with the version of Unity specif
 ## Contributers
 
 [Andrew Moreno](https://www.linkedin.com/in/andrew-moreno/): Game Design and Development
+
 [Zachary McDonnell](https://www.instagram.com/_zachmcdonnell_/): Art Assets (In Development)
 
 ## Version History
