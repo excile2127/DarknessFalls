@@ -1,14 +1,16 @@
 # Darkness Falls
 
-Darkness Falls is a small-scale, sidescrolling platformer currently in development in Unity with an anticipated completion date of mid-April 2022.
+Darkness Falls is a small-scale, sidescrolling platformer currently in development in Unity with an anticipated alpha release date of mid-April 2022.
 
 ## Description
 
-My primary goal for Darkness Falls is to practice the fundamentals of gameplay programming. As such, I do not intend at this time for this project to become a standalone game, rather a demonstration of what I have learned thus far.
+Darkness Falls is my capstone project for my Bachelor's degree in Computer Science at Montana Tech. As such, I don't intend for it to be a full-scale game at this time, but rather a demonstration of my knowledge of game development.
 
-Overall, I am planning on implementing many core platformer game elements, but with a small twist. Instead of having heath points or some other similar mechanism, the player will carry a torch to shed light on their environment. Over time, this torch will slowly lose brightness, and taking hits, falling off the map, or using special actions will expediate the loss of light. However, slaying enemies will provide fuel to keep going. The player loses when their torch is extinguished. Lastly, passive loss of torchlight will only put the torch to minimal light, but will not cause the torch to be extinguished.
+My goal is to implement core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or some other similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit, falling off of platforms, and using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on.
 
-Art assets are in development and are slated to be finished by the beginning of April 2022. Until then, I will use placeholders that I find online or create myself. Because of this, I have decided to hold off on incorporating animations until then, instead focusing on gameplay mechanics. Although this project is mostly for practice, I still would like it to look nice once it has been completed.
+Art Assets are being developed by my friend, Zachary McDonnell, and will be finished and implemented into the game towards the end of alpha in April 2022. As such, all sprites will be temporary and animations not implemented until then.
+
+## Current Progress
 
 ### Roadmap
 
@@ -40,16 +42,17 @@ Art assets are in development and are slated to be finished by the beginning of 
             - [x] On-Hit Torch Loss
             - [x] Double Action Torch Loss
             - [x] On-Slay Torch Gain
-- [ ] Universal Combat Mechanics
-    - [ ] Hitboxes
-    - [ ] Hurtboxes
-    - [ ] On-Hit Reaction
+- [x] Universal Combat Mechanics
+    - [x] Hitboxes
+    - [x] Hitbox Responders
+    - [x] Hurtboxes
+    - [x] Hurtbox Responders
 - [ ] Enemies
     - [ ] Universal Enemy Template
-        - [ ] Movement
-        - [ ] Hitbox
-        - [ ] Hurtbox
-        - [ ] On-Hit Reaction
+        - [ ] Default Movement
+        - [x] Default Hitbox
+        - [x] Default Hurtbox
+        - [ ] On-Hurt Reaction
             - [ ] Normal to Stunned
             - [ ] Stunned to Death
     - [ ] Grounded Enemy Specifics
@@ -61,29 +64,40 @@ Art assets are in development and are slated to be finished by the beginning of 
         - [ ] Hitbox
         - [ ] Hurtbox
 - [ ] Player Combat Mechanics
-    - [ ] Hittable Player
-        - [ ] Hitbox
-        - [ ] On-Hit Reaction
-            - [ ] Torch Loss
+    - [x] Hittable Player
+        - [x] Hurtbox
+        - [x] On-Hurt Reaction
+            - [x] Torch Loss
             - [ ] Death
     - [ ] Player Attacks
         - [ ] Single Swing Attack
             - [ ] Control Logic
-            - [ ] Hurtbox
+            - [ ] Hitbox
         - [ ] Double Swing Attack
             - [ ] Control Logic
-            - [ ] Hurtbox
+            - [ ] Hitbox
         - [ ] Double Dash Attack
             - [ ] Temporarily Remove Enemy Collision
             - [ ] Temporarily Remove Hitbox
-            - [ ] Hurtbox
+            - [ ] Hitbox
         - [ ] Double Jump Attack
-            - [ ] Hurtbox
+            - [ ] Hitbox
 - [ ] Macro Game Logic
     - [ ] Game Loss
-        - [ ] Player Death
-        - [ ] Falling Off the Map
-    - [ ] Game Win
+        - [ ] Game Loss Detection
+            - [ ] Player Death
+            - [ ] Falling Off the Map
+        - [ ] Handling Game Loss
+            - [ ] Reset Current Scene
+    - [ ] Game Wins
+        - [ ] Game Win Detection
+            - [ ] Reaching the End of the Level
+        - [ ] Handling Game Wins
+            - [ ] Victory Screen
+            - [ ] Redirect to Main Menu Scene
+- [ ] Main Menu Scene
+    - [ ] Scene Setup
+    - [ ] Scene Transition
 - [ ] Animations
     - [ ] Player
         - [ ] Movement
@@ -122,56 +136,79 @@ Art assets are in development and are slated to be finished by the beginning of 
     - [ ] Enemies
         - [ ] Grounded Enemy
         - [ ] Flying Enemy
-- [ ] Main Menu Scene
-    - [ ] Scene Setup
-    - [ ] Scene Transition
 - [ ] Level Design
 
-## Checking Current Progress
+### GIFs
 
-### Development Screenshot
+#### Jumping
 
-![development screenshot](Assets/Sprites/currentProgress.png)
+![Jumping](READMEGIFs/jumping.gif)
 
-### Running the Game
+#### Dashing and Dash-Jumping
 
-Since the game is actively in development, it is not already built and is most easily viewed through the Unity editor. If you haven't already, install Unity Hub [here](https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.exe).
+![Dashing and Dash-Jumping](READMEGIFs/dashingAndDashJumping.gif)
 
-To get the project folder, you'll need to clone the project. Note, that this project uses Git Large Files Support (LFS). Downloading a zip file using the green button on GitHub may not work. You must clone the project with a version of Git that has LFS. You can download GitLFS [here](https://git-lfs.github.com/).
+#### Dynamic Background - Game View
 
-Once you have cloned the repository, you should install the version of Unity that is listed below in the dependencies section. Then, open the project through Unity.
+![Dynamic Background - Game View](READMEGIFs/dynamicBackgroundGameView.gif)
 
-### I Just Want to See the Scripts
+#### Dynamic Background - Scene View
 
-If you just want to see an example of my coding, scripts are located in the Assets folder under Scripts, then organized by their respective categories :P
+![Dynamic Background - Scene View](READMEGIFs/dynamicBackgroundSceneView.gif)
 
-### Dependencies
+#### Passive Torchlight Loss
+
+![Passive Torchlight Loss](READMEGIFs/passiveTorchlightLoss.gif)
+
+#### Hitboxes, Hurtboxes, and On-Hurt Torchlight Loss
+
+![Hitboxes, Hurtboxes, and Active Torchlight Loss](READMEGIFs/hitboxesHurtboxesAndOn-HurtTorchlighLoss.gif)
+
+### Build Archive
+
+[Version 0.3](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-3)
+
+### Opening the Game in the Unity Editor
+
+First, you'll need to clone the project to get the project folder. However, this project uses Git Large Files Support (LFS). Downloading a zip file using the green button on GitHub may not work. You must clone the project with a version of Git that has LFS. You can download GitLFS [here](https://git-lfs.github.com/).
+
+Next, open the project folder through Unity Hub with the version of Unity specified in the dependencies section. From here, you should be able run and examine the game through the Unity editor.
+
+#### Dependencies
 
 * [GitLFS](https://git-lfs.github.com/)
-* [Unity 2020.3.24f1](unityhub://2020.3.24f1/79c78de19888)
+* [Unity 2020.3.24f1](https://unity3d.com/get-unity/download/archive)
 
-## Authors
+## Contributers
 
-[Andrew Moreno](https://www.linkedin.com/in/andrew-moreno/)
+[Andrew Moreno](https://www.linkedin.com/in/andrew-moreno/): Game Design and Development
+[Zachary McDonnell](https://www.instagram.com/_zachmcdonnell_/): Art Assets (In Development)
 
 ## Version History
+* 0.3
+    * Universal Combat Mechanics
+        * Hitboxes
+        * Hitbox Responders
+        * Hurtboxes
+        * Hurtbox Responders
+    * Player Hurtbox Responder
+    * Enemy Hitbox Responder
 * 0.2
     * Completion of the Torch System
-        * Includes Messenger System for both the Torch Controller and the Torch Radius Scripts
-    * Moved Camera Script's Update to Late Update to prevent jittering
-    * Changed background sprite clones to have the same parent
-        * Might expand on this in the future to create a parent object for the original and clones
-    * Miscellaneous script organization
+        * Includes new Messenger system in both the Torch Controller and the Torch Radius scripts
+    * Moved Platformer Camera script's Update to Late Update to prevent jittering
+    * Changed background object clones from Distant Background to have the same parent
+        * Might expand on this in the future to create a parent object for the original and clones for organization and easy manipulation
 * 0.1.2
     * Script-Controlled Lighting
     * Basic Torch Management
     * Passive Torch Loss
     * Double Action Torch Loss
-    * Miscellaneous script organization
-    * Miscellaneous bug fixes
 * 0.1.1
     * Static Lighting
     * Temporary sprites placed for Sky and Treeline
 * 0.1
-    * Initial Commit
-    * Player Movement, Camera Control, and Dynamic Backgrounds
+    * Player Movement
+    * Camera Control
+    * Dynamic Backgrounds
+    * Basic Scene setup
