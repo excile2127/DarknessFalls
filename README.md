@@ -155,7 +155,8 @@ Upon being hit, the player loses some of their torchlight, becomes immune to fur
 ## Build Archive
 
 [Version 0.3](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-3)
-[Version 0.4]()
+
+[Version 0.4](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-4)
 
 ## Opening the Game in the Unity Editor
 
