@@ -35,7 +35,7 @@ public class TorchRadius : MonoBehaviour
     // Interpolater for linear interpolation
     private float _interpolator;
 
-    // Initialize public variables
+    // Initialize editor variables
     void Reset()
     {
         innerMinRadius = 0.0f;
@@ -45,19 +45,19 @@ public class TorchRadius : MonoBehaviour
         radiusChangeDuration = 1.0f;
     }
 
-    // Add listeners for the torch being changed via the Messenger system on enable
+    // Add listeners for torchlight updates on enable
     void OnEnable()
     {
-        Messenger.AddListener(GameEvent.TORCH_CHANGED, OnTorchChanged);
+        Messenger<float>.AddListener(GameEvent.TORCHLIGHT_CHANGED, OnTorchlightChanged);
     }
 
-    // Remove game event listeners on disable
+    // Remove listeners for torchlight updates on disable
     void OnDisable()
     {
-        Messenger.RemoveListener(GameEvent.TORCH_CHANGED, OnTorchChanged);
+        Messenger<float>.RemoveListener(GameEvent.TORCHLIGHT_CHANGED, OnTorchlightChanged);
     }
 
-    // Initialize private variables
+    // Initialize runtime variables
     void Start()
     {
         _pointLight = GetComponent<Light2D>();
@@ -102,7 +102,7 @@ public class TorchRadius : MonoBehaviour
     }
 
     // Function for when a change in torchlight has been broadcasted
-    void OnTorchChanged()
+    void OnTorchlightChanged(float value)
     {
         // Set last inner and outer radius to current radius
         _lastInnerRadius = _pointLight.pointLightInnerRadius;

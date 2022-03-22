@@ -7,9 +7,10 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class DistantBackground : MonoBehaviour
 {
-    // Factor by how much to offset the camera's movement
-    // A value of 1 follows the camera, values near one appear distant, and higher numbers have little effect
-    public float distanceDivisor;
+    // Factor of the distance of the object
+    // Capped between 0 and 1, with higher number corresponding to higher distance
+    // A value of 0 creates a static image, a value of 1 has the background follow the camera
+    public float distanceMultiplier;
 
     // Transform component of the background sprite that this script is attached to
     private Transform backgroundTransform;
@@ -18,12 +19,13 @@ public class DistantBackground : MonoBehaviour
     // X position of the camera in the last update
     private float cameraLastX;
 
-    // Set default values for public variables
+    // Initialize editor variables
     void Reset()
     {
-        distanceDivisor = 1.25f;
+        distanceMultiplier = 0.5f;
     }
 
+    // Intialize runtime variables
     void Start()
     {
         backgroundTransform = gameObject.transform;
@@ -36,9 +38,9 @@ public class DistantBackground : MonoBehaviour
         // Check if camera has moved since last update
         if (cameraLastX != cameraTransform.position.x)
         {
-            // If it has, offset the background sprite by the camera's movement divided by the distance divisor
+            // If it has, offset the background sprite by the camera's movement multiplier by the distance multiplier
             float cameraMovement = cameraTransform.position.x - cameraLastX;
-            backgroundTransform.position = new Vector3(backgroundTransform.position.x + cameraMovement/distanceDivisor,
+            backgroundTransform.position = new Vector3(backgroundTransform.position.x + cameraMovement*distanceMultiplier,
                                                         backgroundTransform.position.y,
                                                         backgroundTransform.position.z);
             cameraLastX = cameraTransform.position.x;

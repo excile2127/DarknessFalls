@@ -46,7 +46,7 @@ public class Torch : MonoBehaviour
             if (_torchlight != previousTorchlight)
             {
                 // If so, broadcast that the torchlight has changed
-                Messenger.Broadcast(GameEvent.TORCH_CHANGED);
+                Messenger<float>.Broadcast(GameEvent.TORCHLIGHT_CHANGED, _torchlight);
             }
         }
     }

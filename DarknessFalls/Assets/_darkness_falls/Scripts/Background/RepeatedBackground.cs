@@ -18,6 +18,7 @@ public class RepeatedBackground : MonoBehaviour
 
     void Start()
     {
+        // Initialize runtime variables
         bgSprite = GetComponent<SpriteRenderer>();
         cBgTrans = gameObject.transform;
 
@@ -45,7 +46,7 @@ public class RepeatedBackground : MonoBehaviour
                                         cBgTrans.position.z);
     }
 
-    void Update()
+    void LateUpdate()
     {
         // Check if camera has moved past the boundary to the left background sprite
         if (Camera.main.transform.position.x < (cBgTrans.position.x - bgSprite.size.x/2))

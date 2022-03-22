@@ -46,7 +46,7 @@ public class TorchFlicker : MonoBehaviour
     // Interpolator for linear interpolation
     private float _interpolator;
 
-    // Initialize public variables
+    // Initialize editor variables
     public void Reset()
     {
         maxIntensityIncrease = 0.05f;
@@ -58,7 +58,7 @@ public class TorchFlicker : MonoBehaviour
         flickering = true;
     }
 
-    // Initialize private variables and the target for the first flicker effect if the light should flicker
+    // Initialize runtime variables and the target for the first flicker effect if the light should flicker
     public void Start()
     {
         _light = GetComponent<Light2D>();
