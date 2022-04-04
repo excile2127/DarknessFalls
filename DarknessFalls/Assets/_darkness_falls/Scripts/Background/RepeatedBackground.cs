@@ -8,19 +8,19 @@ using UnityEngine;
 public class RepeatedBackground : MonoBehaviour
 {
     // SpriteRenderer component of the background sprite
-    private SpriteRenderer bgSprite;
+    private SpriteRenderer _spriteRenderer;
     // Transform component of the center background sprite
-    private Transform cBgTrans;
+    private Transform _centerTransform;
     // Transform component of the left background sprite
-    private Transform lBgTrans;
+    private Transform _leftTransform;
     // Transform component of the right background sprite
-    private Transform rBgTrans;
+    private Transform _rightTransform;
 
     void Start()
     {
         // Initialize runtime variables
-        bgSprite = GetComponent<SpriteRenderer>();
-        cBgTrans = gameObject.transform;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _centerTransform = gameObject.transform;
 
         // Create a new copy of the background game object for the left background sprite
         GameObject tempObject = GameObject.Instantiate(gameObject);
@@ -28,52 +28,50 @@ public class RepeatedBackground : MonoBehaviour
         tempObject.transform.SetParent(gameObject.transform.parent.transform);
         // Disable this script to prevent infinite recursion
         tempObject.GetComponent<RepeatedBackground>().enabled = false;
-        lBgTrans = tempObject.transform;
+        _leftTransform = tempObject.transform;
         // Shift the position of the copy to the very left of the original background sprite
-        lBgTrans.position = new Vector3(cBgTrans.position.x - bgSprite.size.x + 0.1f,
-                                        cBgTrans.position.y,
-                                        cBgTrans.position.z);
+        _leftTransform.position = new Vector3(_centerTransform.position.x - _spriteRenderer.size.x + 0.1f,
+                                              _centerTransform.position.y,
+                                              _centerTransform.position.z);
         // Create a new copy of the background game object for the left background sprite
         tempObject = GameObject.Instantiate(gameObject);
         // Set the parent of the clone to the parent of the original
         tempObject.transform.SetParent(gameObject.transform.parent.transform);
         // Disable this script to prevent infinite recursion
         tempObject.GetComponent<RepeatedBackground>().enabled = false;
-        rBgTrans = tempObject.transform;
+        _rightTransform = tempObject.transform;
         // Shift the position of the copy to the very right of the original background sprite
-        rBgTrans.position = new Vector3(cBgTrans.position.x + bgSprite.size.x - 0.1f,
-                                        cBgTrans.position.y,
-                                        cBgTrans.position.z);
+        _rightTransform.position = new Vector3(_centerTransform.position.x + _spriteRenderer.size.x - 0.1f,
+                                               _centerTransform.position.y,
+                                               _centerTransform.position.z);
     }
 
-    void LateUpdate()
+    void Update()
     {
         // Check if camera has moved past the boundary to the left background sprite
-        if (Camera.main.transform.position.x < (cBgTrans.position.x - bgSprite.size.x/2))
+        if (Camera.main.transform.position.x < (_centerTransform.position.x - _spriteRenderer.size.x/2))
         {
-            // If it has, move the right background sprite to become the left sprite
-            // and shift the names of each background sprite accordingly
-            Transform tempBgTrans = rBgTrans;
-            rBgTrans = cBgTrans;
-            cBgTrans = lBgTrans;
-            lBgTrans = tempBgTrans;
-            lBgTrans.position = new Vector3(cBgTrans.position.x - bgSprite.size.x + 0.1f,
-                                            cBgTrans.position.y,
-                                            cBgTrans.position.z);
+            // Move the right background sprite to become the left sprite and shift the names of each background sprite accordingly
+            Transform tempBgTrans = _rightTransform;
+            _rightTransform = _centerTransform;
+            _centerTransform = _leftTransform;
+            _leftTransform = tempBgTrans;
+            _leftTransform.position = new Vector3(_centerTransform.position.x - _spriteRenderer.size.x + 0.1f,
+                                                 _centerTransform.position.y,
+                                                 _centerTransform.position.z);
 
         }
         // Check if camera has moved past the boundary to the right background sprite
-        if (Camera.main.transform.position.x > (cBgTrans.position.x + bgSprite.size.x/2))
+        if (Camera.main.transform.position.x > (_centerTransform.position.x + _spriteRenderer.size.x/2))
         {
-            // If it has, move the left background sprite to become the right sprite
-            // and shift the names of each background sprite accordingly
-            Transform tempBgTrans = lBgTrans;
-            lBgTrans = cBgTrans;
-            cBgTrans = rBgTrans;
-            rBgTrans = tempBgTrans;
-            rBgTrans.position = new Vector3(cBgTrans.position.x + bgSprite.size.x - 0.1f,
-                                            cBgTrans.position.y,
-                                            cBgTrans.position.z);
+            // Move the left background sprite to become the right sprite and shift the names of each background sprite accordingly
+            Transform tempBgTrans = _leftTransform;
+            _leftTransform = _centerTransform;
+            _centerTransform = _rightTransform;
+            _rightTransform = tempBgTrans;
+            _rightTransform.position = new Vector3(_centerTransform.position.x + _spriteRenderer.size.x - 0.1f,
+                                                   _centerTransform.position.y,
+                                                   _centerTransform.position.z);
         }
     }
 }

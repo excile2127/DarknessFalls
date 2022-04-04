@@ -6,7 +6,7 @@ Darkness Falls is a small-scale, sidescrolling platformer currently in developme
 
 Darkness Falls is my capstone project for my Bachelor's degree in Computer Science at Montana Tech. As such, I don't intend for it to be a full-scale game at this time, but rather a demonstration of my knowledge of game engineering.
 
-My goal is to implement core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or another similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit, falling off the map, and using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on.
+My goal is to implement core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or another similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit or using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on.
 
 Art Assets are being developed by my friend, Zachary McDonnell, and will be finished and implemented into the game towards the end of alpha in April 2022. As such, all sprites will be temporary and animations not implemented until then.
 
@@ -36,8 +36,8 @@ Art Assets are being developed by my friend, Zachary McDonnell, and will be fini
     - [x] Hurtboxes
     - [x] Hurtbox Responders
 - [ ] Enemies
-    - [ ] Base Enemy
-    - [ ] Grounded Enemy
+    - [x] Base Enemy
+    - [x] Grounded Enemy
     - [ ] Flying Enemy
 - [ ] Player Combat Mechanics
     - [x] Hurtable Player
@@ -49,15 +49,16 @@ Art Assets are being developed by my friend, Zachary McDonnell, and will be fini
         - [ ] Double Dash Attack
         - [ ] Double Jump Attack
 - [ ] Macro Game Logic
-    - [ ] Game Loss
+    - [x] Game Loss
     - [ ] Game Win
 - [ ] Scene Management
     - [ ] Main Menu Scene
     - [ ] Level Transition
 - [ ] Animations
     - [ ] Player
+        - [x] Idle
         - [ ] Movement
-            - [ ] Walking
+            - [x] Walking
             - [ ] Jumping/Falling
             - [ ] Dashing
         - [ ] Attacks
@@ -152,11 +153,51 @@ Upon being hit, the player loses some of their torchlight, becomes immune to fur
 
 ![Player On-Hurt Reaction](READMEGIFs/playerOnHurtReaction.gif)
 
+### Build Versions 0.5
+
+#### Idle and Walk Animations
+
+Animations for idle and walking have been added! The rest of the art assets are currently in development, but for now, goodbye Mr. Green Box!
+
+![Idle and Walk Animations](READMEGIFs/idleAndWalkAnimations.gif)
+
+#### Sword Attack
+
+The player's default attack is a swing of their sword this will stun enemies and knock them back if they were already stunned. Unlike last build, there is now an enemy to hit!
+
+![Sword Attack](READMEGIFs/swordAttack.gif)
+
+#### Torch Attack
+
+If the player attacks again after their sword swing, they will lose torchlight but have a much more powerful attack. This attack can kill stunned enemies, giving the player torchlight back in the process. If the enemy is not killed, they will knocked back and stunned for a long duration. However, this can only be done if the player has some torchlight to lose...
+
+![Torch Attack](READMEGIFs/torchAttack.gif)
+
+#### Death's Door Attack
+
+If the player has no torchlight remaining, they are on "death's door". They cannot double jump, double dash, or torch attack. However, their sword instantly kills enemies, whether they were stunned or not.
+
+![Death's Door Attack](READMEGIFs/deathsDoorAttack.gif)
+
+#### Enemy Slime
+
+The first enemy of Darkness Falls is a small slime. This enemy will seek out the player and unleash an attack in every direction. In the future, this enemy will also turn around when facing obstacles if they can't hop over them.
+
+![Enemy Slime](READMEGIFs/enemySlime.gif)
+
+#### Player Death and Respawn
+
+When the player is hit on death's door or falls off the map, they die and lose the game. For now, this just restarts the level. In the future, there will be a death animation and game over screen. 
+
+![Player Death and Respawn](READMEGIFs/playerDeathAndRespawn.gif)
+
 ## Build Archive
 
 [Version 0.3](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-3)
 
 [Version 0.4](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-4)
+
+[Version 0.5](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-5)
 
 ## Opening the Game in the Unity Editor
 
@@ -176,14 +217,31 @@ Next, open the project folder through Unity Hub with the version of Unity specif
 [Zachary McDonnell](https://www.instagram.com/_zachmcdonnell_/): Art Assets (In Development)
 
 ## Version History
+* 0.5
+    * Began putting in animations
+        * Idle and walking!
+    * Created generic enemy scripts
+        * Overarching enemy controller uses enemy movement abstract base class and enemy attack base class
+    * Finished combat system
+        * Sword attack stuns enemies and knockbacks already stunned enemies
+        * Torch attack stuns and knockbacks enemies and kills already stunned enemies
+        * Death's door attack (attacking at no torchlight) kills enemies regardless of if they are stunned
+    * Implemented Slime enemy
+        * Slime movement derived class
+        * Slime attack derived class
+    * Added high-level game controller
+        * Player now dies (and restarts the game) when being hit at low torchlight or when falling off the map
+    * Miscellaneous changes
+        * Too many to count
+        * Most importantly, fixed distant background jittering!
+
 * 0.4
     * Player Action System
         * Replaced Platformer Movement script
         * Scalable, generalized system for controlling the player character through actions
         * Separates walking, jumping, and dashing for specific action blocking
     * Updated Universal Combat Mechanics
-        * In the next release, I'll be separating HitboxResponders from attacks to make them more generalized
-        * For now, Hitboxes and Hurtboxes only relate the boxes themselves, Hitbox Responders control the attacks and what happens when they hit, and Hurtbox Responders control what happens every time the Hurtbox is hurt
+        * Hitboxes and Hurtboxes only relate the boxes themselves, Hitbox Responders control the attacks and what happens when they hit, and Hurtbox Responders control what happens every time the Hurtbox is hurt
     * Created Player and Enemy Hitbox and Hurtbox Responders
         * Player Hitbox Responder and Enemy Hurtbox Responder are placeholders, as I need to make the enemies first
         * The Player Hurtbox Responder makes the player stunned and knocked back every time they are hit, and the Enemy Hitbox Responder broadcasts a reduction in torchlight

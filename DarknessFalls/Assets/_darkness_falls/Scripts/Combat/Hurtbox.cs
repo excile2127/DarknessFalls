@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Class modeling a hurtbox
+// Hurtbox class for collisions
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(HurtboxResponder))]
 public class Hurtbox : MonoBehaviour
 {
     // Boolean for whether the hurtbox is active
-    public bool active;
+    [HideInInspector] public bool active;
     // Color of the hurtbox gizmo when the hurtbox is inactive
     public Color activeColor;
     // Color of the hurtbox gizmo when the hurtbox is inactive
     public Color inactiveColor;
     // Transparency of the hurtbox gizmo
     public float transparency;
-
-    // Reference to the hurtbox's responder
+    // Reference to this hurtbox's responder
     public HurtboxResponder hurtboxResponder;
 
     // Reference to the box collider associated with the hurtbox
@@ -46,6 +45,6 @@ public class Hurtbox : MonoBehaviour
         tempColor.a = transparency;
         Gizmos.color = tempColor;
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
-        Gizmos.DrawCube(Vector3.zero, new Vector3(_boxCollider.size.x * transform.lossyScale.x, _boxCollider.size.y * transform.lossyScale.y, 1));
+        Gizmos.DrawCube(Vector3.zero, new Vector3(1, 1, 0));
     }
 }

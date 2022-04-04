@@ -8,54 +8,50 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
     // Target the camera is following
-    [SerializeField] Transform trackingTarget;
-
-    // Speed at which the camera follows the target
-    public float followSpeed;
-    // Boolean for whether the x-axis is locked
-    public bool xAxisLock;
-    // Boolean for whether the x-axis has a maximum value
-    public bool xHasMax;
-    // Boolean for whether the x-axis has a minimum value
-    public bool xHasMin;
-    // Maximum value for the x position
-    public float xMax;
-    // Minimum value for the x position
-    public float xMin;
+    [SerializeField] public Transform trackingTarget;
     // Offset in the x direction from the target
     public float xOffset;
-    // Boolean for whether the y-axis is locked
-    public bool yAxisLock;
-    // Boolean for whether the y-axis has a maximum value
-    public bool yHasMax;
-    // Boolean for whether the x-axis has a minimum value
-    public bool yHasMin;
-    // Maximum value for the y position
-    public float yMax;
-    // Minimum value for the y position
-    public float yMin;
     // Offset in the y direction from the target
     public float yOffset;
+    // Boolean for whether the x-axis is locked
+    public bool xAxisLock;
+    // Boolean for whether the y-axis is locked
+    public bool yAxisLock;
+    // Boolean for whether the x-axis has a minimum value
+    public bool xHasMin;
+    // Minimum value for the x position
+    public float xMin;
+    // Boolean for whether the x-axis has a maximum value
+    public bool xHasMax;
+    // Maximum value for the x position
+    public float xMax;
+    // Boolean for whether the x-axis has a minimum value
+    public bool yHasMin;
+    // Minimum value for the y position
+    public float yMin;
+    // Boolean for whether the y-axis has a maximum value
+    public bool yHasMax;
+    // Maximum value for the y position
+    public float yMax;
 
     // Initialize editor variables
     void Reset()
     {
-        followSpeed = 9.6f;
-        xAxisLock = false;
-        xHasMax = false;
-        xHasMin = true;
-        xMax = 0;
-        xMin = 0;
         xOffset = 4.8f;
-        yAxisLock = true;
-        yHasMax = false;
-        yHasMin = false;
-        yMax = 0;
-        yMin = 0;
         yOffset = 3.45f;
+        xAxisLock = false;
+        yAxisLock = true;
+        xHasMin = true;
+        xMin = 0;
+        xHasMax = false;
+        xMax = 0;
+        yHasMin = false;
+        yMin = 0;
+        yHasMax = false;
+        yMax = 0;
     }
 
-    void LateUpdate()
+    void Update()
     {
         // Find the x and y values for the target position the camera should move to
         float xTarget = trackingTarget.position.x + xOffset;
@@ -64,7 +60,7 @@ public class FollowCamera : MonoBehaviour
         // By default, do not change the x position
         float xNew = transform.position.x;
         // Check whether the x-axis is unlocked
-        if(!xAxisLock)
+        if (!xAxisLock)
         {
             // If it is, set the x position to the target
             xNew = xTarget;
@@ -86,7 +82,7 @@ public class FollowCamera : MonoBehaviour
         // By default, do not change the y position
         float yNew = transform.position.y;
         // Check whether the y-axis is unlocked
-        if(!yAxisLock)
+        if (!yAxisLock)
         {
             // If it is, set the y position to the target
             yNew = yTarget;

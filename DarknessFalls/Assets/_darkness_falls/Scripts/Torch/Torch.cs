@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Data structure for how much torchlight the player has remaining
-// Very similar to a health point system
 public class Torch : MonoBehaviour
 {
     // Internal maximum of torchlight
-    private float _torchlightMax = 100.0f;
-
+    private float _torchlightMax;
     // Interal current amount of torchlight
     private float _torchlight;
 
@@ -32,28 +30,29 @@ public class Torch : MonoBehaviour
             // Check if new value is greater than the maximum
             if (_torchlight > _torchlightMax)
             {
-                // If so, reduce torchlight to the maximum
+                // Reduce torchlight to the maximum
                 _torchlight = _torchlightMax;
             }
             // Otherwise, check if new value is less than zero
             else if (_torchlight < 0)
             {
-                // If so, set torchlight to zero
+                // Set torchlight to zero
                 _torchlight = 0;
             }
 
             // Check if torchlight changed
             if (_torchlight != previousTorchlight)
             {
-                // If so, broadcast that the torchlight has changed
+                // Broadcast that the torchlight has changed
                 Messenger<float>.Broadcast(GameEvent.TORCHLIGHT_CHANGED, _torchlight);
             }
         }
     }
 
-    // Before start, initialize torchlight to maximum
+    // Before start, initialize torchlight max and torchlight to maximum
     void Awake()
     {
+        _torchlightMax = 100.0f;
         _torchlight = _torchlightMax;
     }
 }

@@ -23,7 +23,6 @@ public class TorchRadius : MonoBehaviour
     private Light2D _pointLight;
     // Reference to the torch
     private Torch _torch;
-
     // Last recorded inner radius of the point light
     private float _lastInnerRadius;
     // Target inner radius of the point light
@@ -62,7 +61,6 @@ public class TorchRadius : MonoBehaviour
     {
         _pointLight = GetComponent<Light2D>();
         _torch = GetComponent<Torch>();
-
         _lastInnerRadius = _pointLight.pointLightInnerRadius;
         _targetInnerRadius = _pointLight.pointLightInnerRadius;
         _lastOuterRadius = _pointLight.pointLightOuterRadius;

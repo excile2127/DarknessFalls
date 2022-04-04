@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Class modeling a hitbox
+// Hitbox class for collisions
 public class Hitbox : MonoBehaviour
 {
     // Boolean for whether the hitbox is active
-    public bool active;
+    [HideInInspector] public bool active;
     // Color of the hitbox gizmo when the hitbox is closed
     public Color closedColor;
     // Color of the hitbox gizmo when the hitbox is open
@@ -38,7 +38,8 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         _colliderState = active ? ColliderState.Open : ColliderState.Closed;
-        _layerMask = 1 << 7;
+
+        _layerMask = LayerMask.GetMask("Hurtbox");
     }
 
     void Update()
@@ -46,18 +47,18 @@ public class Hitbox : MonoBehaviour
         // Check if the hitbox is not active
         if (!active)
         {
-            // If so, set the collider state to closed
+            // Set the collider state to closed
             _colliderState = ColliderState.Closed;
         }
         else
         {
-            // Otherwise, find all collisions with hurtboxes
+            // Find all collisions with hurtboxes
             Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(transform.localScale.x, transform.localScale.y), transform.eulerAngles.z, _layerMask);
 
             // Loop over all collisions
             for (int i = 0; i < colliders.Length; i++)
             {
-                // For each collision, call the hitbox responder
+                // Call the hitbox responder
                 _hitboxResponder?.CollisionedWith(colliders[i]);
             }
 

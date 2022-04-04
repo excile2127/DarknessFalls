@@ -1,10 +1,10 @@
-// A list of all states a hitbox can be in
+// A list of all hitbox states
 public enum ColliderState
 {
-    // Hitbox is not active
+    // Not active
     Closed,
-    // Hitbox is active, but not colliding
+    // Active, but not colliding
     Open,
-    // Hitbox is active and colliding
+    // Active and colliding
     Colliding
 }

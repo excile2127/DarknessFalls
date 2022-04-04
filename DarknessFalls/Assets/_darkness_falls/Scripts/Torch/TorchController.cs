@@ -13,7 +13,6 @@ public class TorchController : MonoBehaviour
 
     // Reference to the torch
     private Torch _torch;
-
     // Actual value of torchlight lost per second from passive torch loss
     private float _baseTorchLoss;
     // Boolean of whether the player is passively losing torchlight
@@ -42,17 +41,16 @@ public class TorchController : MonoBehaviour
     void Start()
     {
         _torch = GetComponent<Torch>();
-
         _baseTorchLoss = _torch.TorchlightMax / torchDuration;
         _losingTorchlight = false;
     }
 
-    // Check if torch is not static and the player is currently not losing torchlight
-    // If so, start passive torchlight loss coroutine
     void Update()
     {
+        // Check if torch is not static and the player is currently not losing torchlight
         if (!staticTorch && !_losingTorchlight)
         {
+            // Start passive torchlight loss coroutine
             StartCoroutine(PassiveLoseTorchlight());
         }
     }
