@@ -5,10 +5,10 @@ using UnityEngine;
 // Enemy movement derived class for slimes
 public class SlimeMovement : EnemyMovement
 {
-    // Boolean for whether the enemy is facing right
-    public bool facingRight;
     // Maximum distance the enemy can see
     public float visionDistance;
+    // Maximum distance the enemy should turn around when approaching an obstacle
+    public float turnAroundDistance;
     // How fast the enemy moves per second
     public float moveSpeed;
 
@@ -19,9 +19,9 @@ public class SlimeMovement : EnemyMovement
     // Initialize editor variables
     void Reset()
     {
-        facingRight = false;
-        visionDistance = 9.6f;
-        moveSpeed = 3.6f;
+        visionDistance = 7.1f;
+        turnAroundDistance = 0.75f;
+        moveSpeed = 2.7f;
     }
 
     // Initialize editor variables
@@ -34,22 +34,19 @@ public class SlimeMovement : EnemyMovement
     public override void Move()
     {
         // Look to the left and right of the enemy
-        RaycastHit2D leftHit = Physics2D.Raycast(new Vector2(transform.position.x - _box.size.x/2 - 0.1f, transform.position.y), Vector2.left, visionDistance, _layerMask);
-        RaycastHit2D rightHit = Physics2D.Raycast(new Vector2(transform.position.x + _box.size.x/2 + 0.1f, transform.position.y), Vector2.right, visionDistance, _layerMask);
-        // Check if the enemy can see the player to the left
-        if (leftHit.collider != null && leftHit.collider.gameObject.tag == "Player")
+        RaycastHit2D leftHit = Physics2D.Raycast(new Vector2(transform.position.x + (_box.offset.x * (transform.localScale.x < 0 ? 1 : -1)) - _box.size.x/2 - 0.1f, transform.position.y + _box.offset.y), Vector2.left, visionDistance, _layerMask);
+        RaycastHit2D rightHit = Physics2D.Raycast(new Vector2(transform.position.x + (_box.offset.x * (transform.localScale.x < 0 ? 1 : -1)) + _box.size.x/2 + 0.1f, transform.position.y + _box.offset.y), Vector2.right, visionDistance, _layerMask);
+        // Check if the slime can see the player on one side but is facing the other direction, or if the slime is running into an obstacle
+        if ((leftHit.collider != null && leftHit.collider.gameObject.tag == "Player" && transform.localScale.x > 0)
+          ||(rightHit.collider != null && rightHit.collider.gameObject.tag == "Player" && transform.localScale.x < 0)
+          ||(leftHit.collider != null && leftHit.distance <= turnAroundDistance && transform.localScale.x < 0)
+          ||(rightHit.collider != null && rightHit.distance <= turnAroundDistance && transform.localScale.x > 0))
         {
-            // Face the left
-            facingRight = false;
-        }
-        // Otherwise, check if the enemy can see the player to the right
-        else if (rightHit.collider != null && rightHit.collider.gameObject.tag == "Player")
-        {
-            // Face the right
-            facingRight = true;
+            // Face the opposite direction
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
         // Move in the direction the enemy is facing
-        _body.velocity = new Vector2((facingRight ? 1 : -1) * moveSpeed, _body.velocity.y);
+        _body.velocity = new Vector2(moveSpeed * (transform.localScale.x > 0 ? 1 : -1), _body.velocity.y);
     }
 
     // Function called when the enemy should stop moving

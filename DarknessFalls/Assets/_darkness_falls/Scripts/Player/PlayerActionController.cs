@@ -4,9 +4,9 @@ using System;
 using UnityEngine;
 
 // Controller script for all player actions
+// Also controls player's animations
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
 public class PlayerActionController : MonoBehaviour
 {
@@ -24,6 +24,8 @@ public class PlayerActionController : MonoBehaviour
     private bool _grounded;
     // Boolean for whether the player is at 0 torchlight
     private bool _deathsDoor;
+    // Boolean for whether the player can take any actions
+    private bool _stunned;
 
     // Accessor for _grounded
     public bool Grounded
@@ -58,6 +60,7 @@ public class PlayerActionController : MonoBehaviour
         _storedAllowances = new Dictionary<string, bool>();
         _grounded = false;
         _deathsDoor = false;
+        _stunned = false;
 
         // Populate _playerActions
         PlayerAction[] tempPlayerActions = GetComponents<PlayerAction>();
@@ -132,8 +135,45 @@ public class PlayerActionController : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
 
-        // Pass horizontal speed to animator component 
-        _animator.SetFloat("speed", Mathf.Abs(_body.velocity.x));
+        // Set all animator parameters to false
+        foreach (AnimatorControllerParameter parameter in _animator.parameters)
+        {
+            _animator.SetBool(parameter.name, false);
+        }
+        // Set the parameter of the correct animation to true
+        if (_stunned)
+        {
+            _animator.SetBool("stunned", true);
+        }
+        else if (_playerActions["attacking"].Active)
+        {
+            // Add check for different attacks
+            _animator.SetBool("sword_attacking", true);
+        }
+        else if (_playerActions["dashing"].Active)
+        {
+            // Add check for dash vs double dash
+            _animator.SetBool("dashing", true);
+        }
+        else if (!_grounded)
+        {
+            if (_body.velocity.y > 0)
+            {
+                _animator.SetBool("rising", true);
+            }
+            else
+            {
+                _animator.SetBool("falling", true);
+            }
+        }
+        else if (_playerActions["walking"].Active)
+        {
+            _animator.SetBool("walking", true);
+        }
+        else
+        {
+            _animator.SetBool("idle", true);
+        }
 
         // Reset all actions allowed status to their former state
         ResetAll();
@@ -170,5 +210,21 @@ public class PlayerActionController : MonoBehaviour
         {
             _playerActions[kvp.Key].allowed = value;
         }
+    }
+
+    // Function called when the player dies
+    public void Die()
+    {
+        // Set all animator parameters to false
+        foreach (AnimatorControllerParameter parameter in _animator.parameters)
+        {            
+            _animator.SetBool(parameter.name, false);            
+        }
+        // Pass the player's death to the animator
+        _animator.SetBool("dying", true);
+        // TEMPORARY: Make the player turn red
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        // Disable this script
+        this.enabled = false;
     }
 }

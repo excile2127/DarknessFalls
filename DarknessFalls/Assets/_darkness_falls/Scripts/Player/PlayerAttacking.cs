@@ -72,6 +72,12 @@ public class PlayerAttacking : PlayerAction
             // Check if the player has buffered an attack and is not already attacking
             if (_bufferedAttack && !swordAttack.Active && !torchAttack.Active)
             {
+                // Check if the player is inputting in the opposite direction they are facing
+                if ((Input.GetAxis("Horizontal") < 0 && transform.localScale.x > 0) || (Input.GetAxis("Horizontal") > 0 && transform.localScale.x < 0))
+                {
+                    // Flip the player's local scale in the x direction
+                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                }
                 // Call torch attack
                 torchAttack.Attack();
                 // Remove the buffered torch attack

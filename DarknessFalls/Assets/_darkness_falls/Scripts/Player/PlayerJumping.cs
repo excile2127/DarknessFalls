@@ -25,7 +25,7 @@ public class PlayerJumping : PlayerAction
     protected override void ActionReset()
     {
         jumpVelocity = 13.5f;
-        torchlightOnDoubleJump = -15.0f;
+        torchlightOnDoubleJump = -30.0f;
     }
 
     // Initialize runtime variables
@@ -36,13 +36,13 @@ public class PlayerJumping : PlayerAction
 
     public override void BeforeActionUpdate()
     {
+        // Mark the player as not jumping
+        _active = false;
         // Check if the player is grounded
         if (_actionController.Grounded)
         {
             // Allow the player to double jump
             _canDoubleJump = true;
-            // Mark the player as not jumping
-            _active = false;
         }
     }
 

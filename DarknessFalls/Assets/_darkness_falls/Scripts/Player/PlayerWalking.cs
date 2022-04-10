@@ -18,7 +18,7 @@ public class PlayerWalking : PlayerAction
     // Initialize editor variables
     protected override void ActionReset()
     {
-        walkSpeed = 7.2f;
+        walkSpeed = 5.4f;
     }
 
     public override void ActionUpdate()
@@ -26,5 +26,6 @@ public class PlayerWalking : PlayerAction
         // Set the x velocity of the player in the direction they are inputting
         float xVelocity = Input.GetAxis("Horizontal") * walkSpeed;
         _body.velocity = new Vector2(xVelocity, _body.velocity.y);
+        _active = Input.GetAxis("Horizontal") != 0;
     }
 }

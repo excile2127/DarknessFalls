@@ -49,9 +49,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
-    uniqueID: 487890947
+  - name: Distant Foreground
+    uniqueID: 1996052397
     locked: 0
   - name: Main Sprites
     uniqueID: 757227807
+    locked: 0
+  - name: Near Foreground
+    uniqueID: 487890947
     locked: 0

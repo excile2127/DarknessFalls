@@ -31,7 +31,7 @@ public class Hitbox : MonoBehaviour
         closedColor = Color.gray;
         openColor = Color.green;
         collidingColor = Color.cyan;
-        transparency = 0.5f;
+        transparency = 0.25f;
     }
 
     // Initialize runtime variables

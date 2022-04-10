@@ -54,6 +54,8 @@ public class TorchRadius : MonoBehaviour
     void OnDisable()
     {
         Messenger<float>.RemoveListener(GameEvent.TORCHLIGHT_CHANGED, OnTorchlightChanged);
+        _pointLight.pointLightInnerRadius = 0f;
+        _pointLight.pointLightOuterRadius = 0f;
     }
 
     // Initialize runtime variables

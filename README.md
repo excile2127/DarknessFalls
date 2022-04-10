@@ -4,11 +4,11 @@ Darkness Falls is a small-scale, sidescrolling platformer currently in developme
 
 ## Description
 
-Darkness Falls is my capstone project for my Bachelor's degree in Computer Science at Montana Tech. As such, I don't intend for it to be a full-scale game at this time, but rather a demonstration of my knowledge of game engineering.
+Darkness Falls is my capstone project for my Bachelor of Science in Computer Science at Montana Tech. As such, I don't intend for it to be a full-scale game at this time, but rather a demonstration of my knowledge of game engineering.
 
-My goal is to implement core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or another similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit or using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on.
+My goal is to implement core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or another similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit or using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on. Lastly, if the player runs out of light, they lose.
 
-Art Assets are being developed by my friend, Zachary McDonnell, and will be finished and implemented into the game towards the end of alpha in April 2022. As such, all sprites will be temporary and animations not implemented until then.
+Art Assets are being developed by my friend, Zachary McDonnell, and will be finished and implemented into the game towards the end of pre-alpha in late April 2022. As such, only some sprites and animations are in the game currently.
 
 ## Roadmap
 
@@ -36,8 +36,8 @@ Art Assets are being developed by my friend, Zachary McDonnell, and will be fini
     - [x] Hurtboxes
     - [x] Hurtbox Responders
 - [ ] Enemies
-    - [x] Base Enemy
-    - [x] Grounded Enemy
+    - [x] Enemy Controller
+    - [x] Slime Enemy
     - [ ] Flying Enemy
 - [ ] Player Combat Mechanics
     - [x] Hurtable Player
@@ -59,27 +59,34 @@ Art Assets are being developed by my friend, Zachary McDonnell, and will be fini
         - [x] Idle
         - [ ] Movement
             - [x] Walking
-            - [ ] Jumping/Falling
+            - [ ] Rising
+            - [x] Falling
             - [ ] Dashing
         - [ ] Attacks
             - [ ] Sword
             - [ ] Torch
             - [ ] Double Jumping
             - [ ] Double Dashing
-        - [ ] On-Hit Reaction
-            - [ ] Torch Loss
-            - [ ] Death
+        - [ ] Stunned
+        - [ ] Death
     - [ ] Enemies
-        - [ ] Grounded Enemy
+        - [ ] Slime Enemy
+            - [x] Movement
+            - [ ] Attack
+            - [ ] Stunned
+            - [ ] Death
         - [ ] Flying Enemy
+            - [ ] Movement
+            - [ ] Attack
+            - [ ] Stunned
+            - [ ] Death
 - [ ] UI
-    - [ ] Torch UI
-    - [ ] Dash UI
+    - [ ] Torch Meter
+    - [ ] Dash Cooldown Indicator
 - [ ] Audio
     - [ ] Background Music
         - [ ] Main Menu
         - [ ] In-Game
-        - [ ] Low Torchlight
     - [ ] Player
         - [ ] Movement
             - [ ] Walking
@@ -91,13 +98,26 @@ Art Assets are being developed by my friend, Zachary McDonnell, and will be fini
             - [ ] Torch
             - [ ] Double Jumping
             - [ ] Double Dashing
-        - [ ] On-Hit Reaction
-            - [ ] Torch Loss
-            - [ ] Death
+        - [ ] Stunned
+        - [ ] Death
     - [ ] Enemies
-        - [ ] Grounded Enemy
+        - [ ] Slime Enemy
+            - [x] Movement
+            - [ ] Attack
+            - [ ] Stunned
+            - [ ] Death
         - [ ] Flying Enemy
+            - [ ] Movement
+            - [ ] Attack
+            - [ ] Stunned
+            - [ ] Death
 - [ ] Level Design
+    - [x] Background
+    - [ ] Foreground
+        - [x] Grass
+        - [ ] Obstacles
+        - [ ] Platforms
+    - [ ] Enemy Placement
 
 ## Game Mechanics and GIFs
 
@@ -181,7 +201,7 @@ If the player has no torchlight remaining, they are on "death's door". They cann
 
 #### Enemy Slime
 
-The first enemy of Darkness Falls is a small slime. This enemy will seek out the player and unleash an attack in every direction. In the future, this enemy will also turn around when facing obstacles if they can't hop over them.
+The first enemy of Darkness Falls is a small slime. This enemy will seek out the player and unleash an attack in every direction. In the future, this enemy will also turn around when facing obstacles.
 
 ![Enemy Slime](READMEGIFs/enemySlime.gif)
 
@@ -191,6 +211,26 @@ When the player is hit on death's door or falls off the map, they die and lose t
 
 ![Player Death and Respawn](READMEGIFs/playerDeathAndRespawn.gif)
 
+### Build Versions 0.6
+
+#### Background Sprites
+
+Here's a taste of what Darkness Falls is really going to look like! A layered parallax-style background gives the world depth, despite only being 2D.
+
+![Background Sprites](READMEGIFs/backgroundSprites.gif)
+
+#### Slime Movement
+
+The enemy slime now has an in-game movement animation!
+
+![Slime Movement](READMEGIFs/slimeMovement.gif)
+
+#### Player Death Animation (In Progress)
+
+When the player dies, they now play their death animation (a red idle animation, for the time being) before their torch goes out.
+
+![Player Death Animation (In Progress)](READMEGIFs/playerDeath.gif)
+
 ## Build Archive
 
 [Version 0.3](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-3)
@@ -198,6 +238,8 @@ When the player is hit on death's door or falls off the map, they die and lose t
 [Version 0.4](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-4)
 
 [Version 0.5](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-5)
+
+[Version 0.6](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-6)
 
 ## Opening the Game in the Unity Editor
 
@@ -217,6 +259,23 @@ Next, open the project folder through Unity Hub with the version of Unity specif
 [Zachary McDonnell](https://www.instagram.com/_zachmcdonnell_/): Art Assets (In Development)
 
 ## Version History
+* 0.6
+    * Imported most background sprites
+        * Background is completed barring a couple of adjustments and additions
+            * There is a single black pixel in the sky that needs to be removed
+            * Another row of dense trees in the far back needs to be added
+            * The front layer of trees needs to be colored and textured
+    * Adjusted repeated background script to organize duplicate background sprites
+    * Started player animation controller
+        * Most animation states are accounted for, but just playing the idle animation until I receive the sprite sheets
+    * New player falling animation creates cape billow
+    * Finished slime enemy, including animation controller and imported movement animation
+        * Still needs animations for attacking, being stunned, and dying
+    * Implemented the beginnings of a death transition
+        * Player temporarily changes color (but will play a death animation in the future) before their torch goes out
+        * Still needs a transition to a "game over" screen
+    * Most importantly, fixed background jitter, hopefully for the last time
+        * Adjusted numerous camera and sprite settings, too many to count
 * 0.5
     * Began putting in animations
         * Idle and walking!

@@ -33,6 +33,9 @@ public class FollowCamera : MonoBehaviour
     public bool yHasMax;
     // Maximum value for the y position
     public float yMax;
+    // Factor of linear interpolation;
+    public float interpolationFactor;
+
 
     // Initialize editor variables
     void Reset()
@@ -49,6 +52,7 @@ public class FollowCamera : MonoBehaviour
         yMin = 0;
         yHasMax = false;
         yMax = 0;
+        interpolationFactor = 1.0f;
     }
 
     void Update()
@@ -62,8 +66,8 @@ public class FollowCamera : MonoBehaviour
         // Check whether the x-axis is unlocked
         if (!xAxisLock)
         {
-            // If it is, set the x position to the target
-            xNew = xTarget;
+            // Linearly interpolate the new x value from its current position to the target
+            xNew = Mathf.Lerp(xNew, xTarget, interpolationFactor);
 
             // Check if a maximum for the x-axis has been set and if it has been passed
             if (xHasMax && xNew > xMax)
@@ -84,19 +88,19 @@ public class FollowCamera : MonoBehaviour
         // Check whether the y-axis is unlocked
         if (!yAxisLock)
         {
-            // If it is, set the y position to the target
-            yNew = yTarget;
+            // Linearly interpolate the new y value from its current position to the target
+            yNew = Mathf.Lerp(yNew, yTarget, interpolationFactor);
 
             // Check if a maximum for the y-axis has been set and if it has been passed
             if (yHasMax && yNew > yMax)
             {
-                // If so, set the new y position to the maximum
+                // Set the new y position to the maximum
                 yNew = yMax;
             }
             // Check if a minimum for the y-axis has been set and if it has been passed
             if (yHasMin && yNew < yMin)
             {
-                // If so, set the new y position to the minimum
+                // Set the new y position to the minimum
                 yNew = yMin;
             }
         }
