@@ -224,15 +224,15 @@ GIF creation is in progress!
 
 ## Build Archive
 
-[Version 0.3](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-3)
-
-[Version 0.4](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-4)
-
-[Version 0.5](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-5)
+[Version 1.0](https://simmer.io/@Excile2127/darkness-falls-alpha-1-0)
 
 [Version 0.6](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-6)
 
-[Version 1.0](https://simmer.io/@Excile2127/darkness-falls-alpha-1-0)
+[Version 0.5](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-5)
+
+[Version 0.4](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-4)
+
+[Version 0.3](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-3)
 
 ## Opening the Game in the Unity Editor
 
