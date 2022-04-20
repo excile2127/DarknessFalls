@@ -22,7 +22,7 @@ public class SlimeAttack : EnemyAttack
     protected override void EnemyAttackStart()
     {
         _box = GetComponent<BoxCollider2D>();
-        _layerMask = LayerMask.GetMask("Pushbox") | LayerMask.GetMask("Default");
+        _layerMask = LayerMask.GetMask("PlayerPushbox") | LayerMask.GetMask("Default");
     }
 
     // Return if the player is within the attack range of the slime

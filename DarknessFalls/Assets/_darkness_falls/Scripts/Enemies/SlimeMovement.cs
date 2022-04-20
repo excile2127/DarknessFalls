@@ -27,7 +27,7 @@ public class SlimeMovement : EnemyMovement
     // Initialize editor variables
     protected override void EnemyMovementStart()
     {
-        _layerMask = LayerMask.GetMask("Pushbox") | LayerMask.GetMask("Default");
+        _layerMask = LayerMask.GetMask("PlayerPushbox") | LayerMask.GetMask("EnemyPushbox") | LayerMask.GetMask("EnemyBarrier") | LayerMask.GetMask("Default");
     }
 
     // Function called when the enemy should move

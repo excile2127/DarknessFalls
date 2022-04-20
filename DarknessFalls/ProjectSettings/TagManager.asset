@@ -6,17 +6,20 @@ TagManager:
   tags:
   - Enemy
   - PlayerCombat
+  - Fade Image
+  - Managers
+  - Pause Menu
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Pushbox
+  - PlayerPushbox
   - Water
   - UI
+  - EnemyPushbox
   - Hitbox
   - Hurtbox
-  - 
-  - 
+  - EnemyBarrier
   - 
   - 
   - 

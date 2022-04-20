@@ -1,14 +1,14 @@
 # Darkness Falls
 
-Darkness Falls is a small-scale, sidescrolling platformer currently in development in Unity with an anticipated alpha release date of late April 2022.
+Darkness Falls is a small-scale, sidescrolling platformer developed in Unity C#.
 
 ## Description
 
 Darkness Falls is my capstone project for my Bachelor of Science in Computer Science at Montana Tech. As such, I don't intend for it to be a full-scale game at this time, but rather a demonstration of my knowledge of game engineering.
 
-My goal is to implement core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or another similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit or using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on. Lastly, if the player runs out of light, they lose.
+My goal was to implement core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or another similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit or using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on. Lastly, if the player runs out of light, they lose.
 
-Art Assets are being developed by my friend, Zachary McDonnell, and will be finished and implemented into the game towards the end of pre-alpha in late April 2022. As such, only some sprites and animations are in the game currently.
+Almost all art assets were developed by my friend, Zachary McDonnell.
 
 ## Roadmap
 
@@ -35,89 +35,76 @@ Art Assets are being developed by my friend, Zachary McDonnell, and will be fini
     - [x] Hitbox Responders
     - [x] Hurtboxes
     - [x] Hurtbox Responders
-- [ ] Enemies
+- [x] Enemies
     - [x] Enemy Controller
     - [x] Slime Enemy
-    - [ ] Flying Enemy
-- [ ] Player Combat Mechanics
+        - [x] Slime Attack
+        - [x] Slime Movement
+- [x] Player Combat Mechanics
     - [x] Hurtable Player
         - [x] Player Hurtbox
         - [x] Player Hurtbox Responder
-    - [ ] Player Attacks
+    - [x] Player Attacks
         - [x] Sword Attack
-        - [x] Torch Attack
-        - [ ] Double Dash Attack
-        - [ ] Double Jump Attack
-- [ ] Macro Game Logic
+        - [x] Fire Attack
+        - [x] Death's Door Attack
+        - [x] Double Dash Attack
+- [x] Macro Game Logic
     - [x] Game Loss
-    - [ ] Game Win
-- [ ] Scene Management
-    - [ ] Main Menu Scene
-    - [ ] Level Transition
-- [ ] Animations
-    - [ ] Player
+    - [x] Game Win
+- [x] Scene Management
+    - [x] Main Menu Scene
+    - [x] Game Over Scene
+    - [x] Game Won Scene
+    - [x] Scene Fader
+- [x] Animations
+    - [x] Player
         - [x] Idle
-        - [ ] Movement
+        - [x] Movement
             - [x] Walking
-            - [ ] Rising
+            - [x] Rising
             - [x] Falling
-            - [ ] Dashing
-        - [ ] Attacks
-            - [ ] Sword
-            - [ ] Torch
-            - [ ] Double Jumping
-            - [ ] Double Dashing
-        - [ ] Stunned
-        - [ ] Death
-    - [ ] Enemies
-        - [ ] Slime Enemy
+            - [x] Double Jumping
+            - [x] Dashing
+        - [x] Attacks
+            - [x] Sword
+            - [x] Fire
+            - [x] Death's Door
+            - [x] Double Dashing
+        - [x] Stunned
+        - [x] Death
+    - [x] Enemies
+        - [x] Slime Enemy
             - [x] Movement
-            - [ ] Attack
-            - [ ] Stunned
-            - [ ] Death
-        - [ ] Flying Enemy
-            - [ ] Movement
-            - [ ] Attack
-            - [ ] Stunned
-            - [ ] Death
-- [ ] UI
-    - [ ] Torch Meter
-    - [ ] Dash Cooldown Indicator
-- [ ] Audio
-    - [ ] Background Music
-        - [ ] Main Menu
-        - [ ] In-Game
-    - [ ] Player
-        - [ ] Movement
-            - [ ] Walking
-            - [ ] Jumping
-            - [ ] Landing
-            - [ ] Dashing
-        - [ ] Attacks
-            - [ ] Sword
-            - [ ] Torch
-            - [ ] Double Jumping
-            - [ ] Double Dashing
-        - [ ] Stunned
-        - [ ] Death
-    - [ ] Enemies
-        - [ ] Slime Enemy
-            - [x] Movement
-            - [ ] Attack
-            - [ ] Stunned
-            - [ ] Death
-        - [ ] Flying Enemy
-            - [ ] Movement
-            - [ ] Attack
-            - [ ] Stunned
-            - [ ] Death
-- [ ] Level Design
+            - [x] Attack
+            - [x] Stunned
+            - [x] Death
+- [x] UI
+    - [x] Level Banner
+- [x] Audio
+    - [x] Audio Manager
+    - [x] Background Music
+        - [x] Main Menu
+        - [x] In-Game
+        - [x] Game Over
+        - [x] Game Won
+- [x] Level Design
     - [x] Background
-    - [ ] Foreground
-        - [x] Grass
-        - [ ] Obstacles
-        - [ ] Platforms
-    - [ ] Enemy Placement
+    - [x] Foreground
+        - [x] Obstacles
+        - [x] Enemy Placement
+        - [x] Decorations
+- [ ] Dropped Functionality
+    - [ ] Sound Effects
+        - Support is in place to play sound effects, but none are imported into the game.
+    - [ ] Flying Enemy
+        - Support is in place to make new enemy types, but enemy-specific functionality and assets are missing.
+    - [ ] Multiple Levels
+        - Support is in place to add new levels, but none are designed.
+    - [ ] UI Torch Meter
+        - Support is in place to communicate with a Torch UI element, but it isn't designed.
+    - [ ] Options Menu
+        - Not even supported :P
 
 ## Game Mechanics and GIFs
 
@@ -125,7 +112,7 @@ Art Assets are being developed by my friend, Zachary McDonnell, and will be fini
 
 #### Jumping
 
-The player can jump once off the ground and once when in the air. However, the jump in the air will cost the player some of their remaining torchlight. In the future, there will be a blast of fire below the player when they double jump, which can stun normal enemies or kill stunned enemies.
+The player can jump once off the ground and once when in the air.
 
 ![Jumping](READMEGIFs/jumping.gif)
 
@@ -155,7 +142,7 @@ Over time, the player's torch will slowly burn out. Falling off the map, taking 
 
 #### Hitboxes, Hurtboxes, and On-Hurt Torchlight Loss
 
-In order for combat to occur, the player and enemies must have hitboxes and hurtboxes, which I made custom classes for myself. In this GIF, the player walks over a floating enemy hitbox a few times, demonstrating that they lose some torchlight become immune to further attacks for a short period of time.
+In order for combat to occur, the player and enemies must have hitboxes and hurtboxes, which I made custom classes for myself. In this GIF, the player walks over a floating enemy hitbox a few times, demonstrating that they lose some torchlight and become immune to further attacks for a short period of time.
 
 ![Hitboxes, Hurtboxes, and Active Torchlight Loss](READMEGIFs/hitboxesHurtboxesAndOn-HurtTorchlighLoss.gif)
 
@@ -163,7 +150,7 @@ In order for combat to occur, the player and enemies must have hitboxes and hurt
 
 #### Player Attacking and Enemy On-Hurt Reaction
 
-With the new Player Action system and Player Attacking action, the player can now press "J" to attack in front of them. This will normally be a sword swing that can only stun normal enemies or knockback stunned enemies. However, if they buffer a second attack while they are swinging their sword, they can then swing their torch to kill the presumably stunned enemy. The swing of the torch will cost them some torchlight, but it should reward them some back if they manage to successfully kill an enemy. Also, the player cannot move while attacking, although it isn't shown here. At this time, enemies haven't been created yet, so the attacks just change the color of the pushbox the player is attacking.
+With the new Player Action system and Player Attacking action, the player can now press "J" to attack in front of them. This will normally be a sword swing that can only stun normal enemies. However, if they buffer a second attack while they are swinging their sword, they can then swing again with fire to kill the presumably stunned enemy. The second swing will cost them some torchlight, but it should reward them some back if they manage to successfully kill an enemy. Also, the player cannot move while attacking, although it isn't shown here. At this time, enemies haven't been created yet, so the attacks just change the color of the pushbox the player is attacking.
 
 ![Player Attacking and Enemy On-Hurt Reaction](READMEGIFs/playerAttackingAndEnemyOnHurtReaction.gif)
 
@@ -183,7 +170,7 @@ Animations for idle and walking have been added! The rest of the art assets are 
 
 #### Sword Attack
 
-The player's default attack is a swing of their sword this will stun enemies and knock them back if they were already stunned. Unlike last build, there is now an enemy to hit!
+The player's default attack is a swing of their sword this will stun enemie. Unlike last build, there is now an enemy to hit!
 
 ![Sword Attack](READMEGIFs/swordAttack.gif)
 
@@ -195,7 +182,7 @@ If the player attacks again after their sword swing, they will lose torchlight b
 
 #### Death's Door Attack
 
-If the player has no torchlight remaining, they are on "death's door". They cannot double jump, double dash, or torch attack. However, their sword instantly kills enemies, whether they were stunned or not.
+If the player has no torchlight remaining, they are on "death's door". They cannot double dash or double attack. However, their sword attack is replaced by another that instantly kills enemies, whether they were stunned or not.
 
 ![Death's Door Attack](READMEGIFs/deathsDoorAttack.gif)
 
@@ -215,7 +202,7 @@ When the player is hit on death's door or falls off the map, they die and lose t
 
 #### Background Sprites
 
-Here's a taste of what Darkness Falls is really going to look like! A layered parallax-style background gives the world depth, despite only being 2D.
+Here's a taste of what Darkness Falls is really going to look like! A layered, parallax-style background gives the world depth, despite only being 2D.
 
 ![Background Sprites](READMEGIFs/backgroundSprites.gif)
 
@@ -231,6 +218,10 @@ When the player dies, they now play their death animation (a red idle animation,
 
 ![Player Death Animation (In Progress)](READMEGIFs/playerDeath.gif)
 
+### Build Versions 1.0
+
+GIF creation is in progress!
+
 ## Build Archive
 
 [Version 0.3](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-3)
@@ -240,6 +231,8 @@ When the player dies, they now play their death animation (a red idle animation,
 [Version 0.5](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-5)
 
 [Version 0.6](https://simmer.io/@Excile2127/darkness-falls-pre-alpha-version-0-6)
+
+[Version 1.0](https://simmer.io/@Excile2127/darkness-falls-alpha-1-0)
 
 ## Opening the Game in the Unity Editor
 
@@ -256,9 +249,11 @@ Next, open the project folder through Unity Hub with the version of Unity specif
 
 [Andrew Moreno](https://www.linkedin.com/in/andrew-moreno/): Game Design and Development
 
-[Zachary McDonnell](https://www.instagram.com/_zachmcdonnell_/): Art Assets (In Development)
+[Zachary McDonnell](https://www.instagram.com/_zachmcdonnell_/): Art Assets
 
 ## Version History
+* 1.0
+    * The last version history update is in progress! In short, I finished the game :P
 * 0.6
     * Imported most background sprites
         * Background is completed barring a couple of adjustments and additions

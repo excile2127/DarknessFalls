@@ -45,7 +45,7 @@ public class Hitbox : MonoBehaviour
     void Update()
     {
         // Check if the hitbox is not active
-        if (!active)
+        if (!active || PauseMenuController.gamePaused)
         {
             // Set the collider state to closed
             _colliderState = ColliderState.Closed;

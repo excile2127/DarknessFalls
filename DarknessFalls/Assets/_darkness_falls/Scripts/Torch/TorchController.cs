@@ -47,8 +47,8 @@ public class TorchController : MonoBehaviour
 
     void Update()
     {
-        // Check if torch is not static and the player is currently not losing torchlight
-        if (!staticTorch && !_losingTorchlight)
+        // Check if torch is not static, that the player is currently not losing torchlight, and if the game isn't paused
+        if (!staticTorch && !_losingTorchlight && !PauseMenuController.gamePaused)
         {
             // Start passive torchlight loss coroutine
             StartCoroutine(PassiveLoseTorchlight());

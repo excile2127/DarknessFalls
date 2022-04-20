@@ -73,36 +73,40 @@ public class TorchRadius : MonoBehaviour
     // Update point light radius if needed
     void Update()
     {
-        // Check if interpolator is less than 1
-        // In other words, check if the target radius is not the current radius
-        if (_interpolator < 1.0f)
+        // Check if that the game isn't paused
+        if (!PauseMenuController.gamePaused)
         {
-            // Linearly interpolate inner and outer radius
-            _pointLight.pointLightInnerRadius = Mathf.Lerp(_lastInnerRadius, _targetInnerRadius, _interpolator);
-            _pointLight.pointLightOuterRadius = Mathf.Lerp(_lastOuterRadius, _targetOuterRadius, _interpolator);
+            // Check if interpolator is less than 1
+            // In other words, check if the target radius is not the current radius
+            if (_interpolator < 1.0f)
+            {
+                // Linearly interpolate inner and outer radius
+                _pointLight.pointLightInnerRadius = Mathf.Lerp(_lastInnerRadius, _targetInnerRadius, _interpolator);
+                _pointLight.pointLightOuterRadius = Mathf.Lerp(_lastOuterRadius, _targetOuterRadius, _interpolator);
 
-            // Update interpolator by time since last frame over the time in seconds it should take the point light to change radius
-            _interpolator += Time.deltaTime / radiusChangeDuration;
-        }
-        // Otherwise, check if interpolator is greater than 1
-        // In other words, check if the target radius has been reached
-        else if (_interpolator > 1.0f)
-        {
-            // Set inner and outer radius to target radius
-            _pointLight.pointLightInnerRadius = _targetInnerRadius;
-            _pointLight.pointLightOuterRadius = _targetOuterRadius;
+                // Update interpolator by time since last frame over the time in seconds it should take the point light to change radius
+                _interpolator += Time.deltaTime / radiusChangeDuration;
+            }
+            // Otherwise, check if interpolator is greater than 1
+            // In other words, check if the target radius has been reached
+            else if (_interpolator > 1.0f)
+            {
+                // Set inner and outer radius to target radius
+                _pointLight.pointLightInnerRadius = _targetInnerRadius;
+                _pointLight.pointLightOuterRadius = _targetOuterRadius;
 
-            // Set last inner and outer radius to current radius
-            _lastInnerRadius = _pointLight.pointLightInnerRadius;
-            _lastOuterRadius = _pointLight.pointLightOuterRadius;
+                // Set last inner and outer radius to current radius
+                _lastInnerRadius = _pointLight.pointLightInnerRadius;
+                _lastOuterRadius = _pointLight.pointLightOuterRadius;
 
-            // Set interpolator to 1 to mark that no more change in radius is needed
-            _interpolator = 1.0f;
+                // Set interpolator to 1 to mark that no more change in radius is needed
+                _interpolator = 1.0f;
+            }
         }
     }
 
     // Function for when a change in torchlight has been broadcasted
-    void OnTorchlightChanged(float value)
+    private void OnTorchlightChanged(float value)
     {
         // Set last inner and outer radius to current radius
         _lastInnerRadius = _pointLight.pointLightInnerRadius;

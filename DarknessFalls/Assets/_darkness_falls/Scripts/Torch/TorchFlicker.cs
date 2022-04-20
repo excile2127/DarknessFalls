@@ -65,8 +65,8 @@ public class TorchFlicker : MonoBehaviour
 
     void Update()
     {
-        // Check if the light should be flickering but isn't
-        if (flickering && !_flickering)
+        // Check if the light should be flickering but isn't, and that the game isn't paused
+        if (flickering && !_flickering && !PauseMenuController.gamePaused)
         {
             // Start the flicker coroutine
             StartCoroutine(Flicker());

@@ -37,9 +37,9 @@ public class HitboxResponder : MonoBehaviour
     // Initialize editor variables
     void Reset()
     {
-        startupDuration = 0.1f;
-        attackDuration = 0.5f;
-        recoveryDuration = 0.15f;
+        startupDuration = 0.2f;
+        attackDuration = 0.1f;
+        recoveryDuration = 0.2f;
         hitboxX = transform.localPosition.x;
         hitboxY = transform.localPosition.y;
         hitboxRotation = transform.localRotation.z;

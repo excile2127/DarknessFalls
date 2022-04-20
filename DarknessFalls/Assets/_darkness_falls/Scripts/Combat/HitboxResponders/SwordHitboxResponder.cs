@@ -7,14 +7,11 @@ public class SwordHitboxResponder : HitboxResponder
 {
     // Time in seconds enemies are stunned on hit
     public float stunDuration;
-    // Amount of knockback enemies take on hit when stunned
-    public float knockbackForce;
 
     // Initialize editor variables
-    protected override void HitboxResponderStart()
+    protected override void HitboxResponderReset()
     {
         stunDuration = 1.0f;
-        knockbackForce = 10.0f;
     }
     
     protected override void OnHit(Hurtbox hurtbox)
@@ -24,17 +21,8 @@ public class SwordHitboxResponder : HitboxResponder
         // Check for the enemy controller from hurtbox
         if (controller != null)
         {
-            // Store whether the enemy was already stunned
-            bool wasStunned = controller.Stunned;
             // Stun the enemy
-            controller.Stun(stunDuration);
-            // Check if enemy was stunned
-            if (wasStunned)
-            {
-                // Knock the enemy back
-                controller.Knockback(transform.position, knockbackForce);
-            }
-            
+            controller.Stun(stunDuration);   
         }
     }
 }

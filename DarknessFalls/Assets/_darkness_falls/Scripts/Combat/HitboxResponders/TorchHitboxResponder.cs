@@ -11,10 +11,10 @@ public class TorchHitboxResponder : HitboxResponder
     public float knockbackForce;
 
     // Initialize editor variables
-    protected override void HitboxResponderStart()
+    protected override void HitboxResponderReset()
     {
         stunDuration = 2.0f;
-        knockbackForce = 20.0f;
+        knockbackForce = 7.2f;
     }
 
     protected override void OnHit(Hurtbox hurtbox)
@@ -29,7 +29,7 @@ public class TorchHitboxResponder : HitboxResponder
             {
                 // Stun and knockback the enemy
                 controller.Stun(stunDuration);
-                controller.Knockback(transform.position, knockbackForce);
+                controller.Knockback(transform.parent.localScale.x, knockbackForce);
             }
             else
             {

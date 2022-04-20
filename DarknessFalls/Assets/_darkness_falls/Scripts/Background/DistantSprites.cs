@@ -41,11 +41,13 @@ public class DistantSprites : MonoBehaviour
         // Check if camera has moved since last update
         if (_cameraLastX != _cameraTransform.position.x)
         {
-            // Offset the background sprite by the camera's movement multiplied by the distance multiplier
+            // Offset the background sprite by the camera's
+            // movement multiplied by the distance multiplier
             float cameraMovement = _cameraTransform.position.x - _cameraLastX;
-            transform.position = new Vector3(transform.position.x + cameraMovement*distanceMultiplier,
-                                                        transform.position.y,
-                                                        transform.position.z);
+            transform.position = new Vector3(transform.position.x
+                                            + cameraMovement*distanceMultiplier,
+                                             transform.position.y,
+                                             transform.position.z);
             // Record the change in camera position
             _cameraLastX = _cameraTransform.position.x;
         }

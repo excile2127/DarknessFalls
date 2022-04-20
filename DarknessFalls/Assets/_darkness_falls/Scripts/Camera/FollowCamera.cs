@@ -41,18 +41,18 @@ public class FollowCamera : MonoBehaviour
     void Reset()
     {
         xOffset = 4.8f;
-        yOffset = 3.45f;
+        yOffset = 0.0f;
         xAxisLock = false;
         yAxisLock = true;
         xHasMin = true;
-        xMin = 0;
+        xMin = 0.0f;
         xHasMax = false;
-        xMax = 0;
+        xMax = 0.0f;
         yHasMin = false;
-        yMin = 0;
+        yMin = 0.0f;
         yHasMax = false;
-        yMax = 0;
-        interpolationFactor = 1.0f;
+        yMax = 0.0f;
+        interpolationFactor = 0.5f;
     }
 
     void Update()

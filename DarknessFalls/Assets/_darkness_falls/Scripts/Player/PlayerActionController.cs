@@ -78,105 +78,131 @@ public class PlayerActionController : MonoBehaviour
 
     void Update()
     {
-        // Check for collisions with terrain below the player
-        Vector3 max = _box.bounds.max;
-        Vector3 min = _box.bounds.min;
-        Vector2 corner1 = new Vector2(max.x - .1f, min.y - .1f);
-        Vector2 corner2 = new Vector2(min.x + .1f, min.y - .2f);
-        Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
-
-        // Check if there is a collision and the y velocity is 0, and mark the player as grounded accordingly
-        _grounded = (hit != null && _body.velocity.y == 0) ? true : false;
-
-        // Store all action's allowances
-        StoreAll();
-
-        // Check if the player is dashing
-        if (_playerActions["dashing"].Active)
+        // Check that the game isn't paused
+        if (!PauseMenuController.gamePaused)
         {
-            // Check if the player is attacking
-            if (_playerActions["attacking"].Active)
+            // Check for collisions with terrain below the player
+            Vector3 max = _box.bounds.max;
+            Vector3 min = _box.bounds.min;
+            Vector2 corner1 = new Vector2(max.x - 0.01f, min.y - 0.1f);
+            Vector2 corner2 = new Vector2(min.x + 0.01f, min.y - 0.2f);
+            Collider2D hit = Physics2D.OverlapArea(corner1, corner2, (LayerMask.GetMask("Pushbox") | LayerMask.GetMask("Default")));
+
+            // Check if there is a collision and the y velocity is 0, and mark the player as grounded accordingly
+            _grounded = (hit != null && _body.velocity.y == 0) ? true : false;
+
+            // Store all action's allowances
+            StoreAll();
+
+            // Check if the player is dashing
+            if (_playerActions["dashing"].Active)
             {
-                // Stop the attack
-                _playerActions["attacking"].StopAction();
+                // Check if the player is attacking
+                if (_playerActions["attacking"].Active)
+                {
+                    // Stop the attack
+                    _playerActions["attacking"].StopAction();
+                }
+                // Disallow walking and attacking
+                _playerActions["walking"].allowed = false;
+                _playerActions["attacking"].allowed = false;
             }
-            // Disallow walking and attacking
-            _playerActions["walking"].allowed = false;
-            _playerActions["attacking"].allowed = false;
-        }
-        // Otherwise, check if the player is attacking
-        else if (_playerActions["attacking"].Active)
-        {
-            // Disallow walking
-            _playerActions["walking"].allowed = false;
-        }
-
-        // Loop over each action in _playerActions
-        foreach (KeyValuePair<string, PlayerAction> kvp in _playerActions)
-        {
-            PlayerAction playerAction = kvp.Value;
-            // Call before action update
-            playerAction.BeforeActionUpdate();
-            // Check if this action is allowed
-            if (playerAction.allowed)
+            // Otherwise, check if the player is attacking
+            else if (_playerActions["attacking"].Active)
             {
-                // Call allowed update
-                playerAction.ActionUpdate();
+                // Disallow walking
+                _playerActions["walking"].allowed = false;
             }
-            // Call after action update
-            playerAction.AfterActionUpdate();
-        }
 
-        // Check if the player is allowed to walk and if they are now walking in the opposite direction that they were facing
-        if (_playerActions["walking"].allowed
-        && ((Input.GetAxis("Horizontal") < 0 && transform.localScale.x > 0) || (Input.GetAxis("Horizontal") > 0 && transform.localScale.x < 0)))
-        {
-            // Flip the player's local scale in the x direction
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-        }
-
-        // Set all animator parameters to false
-        foreach (AnimatorControllerParameter parameter in _animator.parameters)
-        {
-            _animator.SetBool(parameter.name, false);
-        }
-        // Set the parameter of the correct animation to true
-        if (_stunned)
-        {
-            _animator.SetBool("stunned", true);
-        }
-        else if (_playerActions["attacking"].Active)
-        {
-            // Add check for different attacks
-            _animator.SetBool("sword_attacking", true);
-        }
-        else if (_playerActions["dashing"].Active)
-        {
-            // Add check for dash vs double dash
-            _animator.SetBool("dashing", true);
-        }
-        else if (!_grounded)
-        {
-            if (_body.velocity.y > 0)
+            // Loop over each action in _playerActions
+            foreach (KeyValuePair<string, PlayerAction> kvp in _playerActions)
             {
-                _animator.SetBool("rising", true);
+                PlayerAction playerAction = kvp.Value;
+                // Call before action update
+                playerAction.BeforeActionUpdate();
+                // Check if this action is allowed
+                if (playerAction.allowed)
+                {
+                    // Call allowed update
+                    playerAction.ActionUpdate();
+                }
+                // Call after action update
+                playerAction.AfterActionUpdate();
+            }
+
+            // Check if the player is allowed to walk and if they are now walking in the opposite direction that they were facing
+            if (_playerActions["walking"].allowed
+            && ((Input.GetAxis("Horizontal") < 0 && transform.localScale.x > 0) || (Input.GetAxis("Horizontal") > 0 && transform.localScale.x < 0)))
+            {
+                // Flip the player's local scale in the x direction
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            }
+
+            // Set all animator parameters to false
+            foreach (AnimatorControllerParameter parameter in _animator.parameters)
+            {
+                _animator.SetBool(parameter.name, false);
+            }
+            // Set the parameter of the correct animation to true
+            if (_stunned)
+            {
+                _animator.SetBool("stunned", true);
+            }
+            else if (_playerActions["attacking"].Active)
+            {
+                // Get reference to player attacking script
+                PlayerAttacking attack = GetComponent<PlayerAttacking>();
+                // Check for different attacks and play the correct animation
+                // Note: this code and system is highly coupled between individual actions and the controller
+                // In the future, add a way for a generic player action to pass what animation to play to the controller
+                if (attack.DeathsDoorActive)
+                {
+                    _animator.SetBool("deaths_door_attacking", true);
+                }
+                else if (attack.TorchActive)
+                {
+                    _animator.SetBool("torch_attacking", true);
+                }
+                else
+                {
+                    _animator.SetBool("sword_attacking", true);
+                }
+            }
+            else if (_playerActions["dashing"].Active)
+            {
+                // Check if the player is not double dashing and play the correct animation
+                if (!GetComponent<PlayerDashing>().DoubleDashing)
+                {
+                    _animator.SetBool("dashing", true);
+                }
+                else
+                {
+                    _animator.SetBool("double_dashing", true);
+                }
+            }
+            else if (!_grounded)
+            {
+                if (_body.velocity.y > 0)
+                {
+                    _animator.SetBool("rising", true);
+                }
+                else
+                {
+                    _animator.SetBool("falling", true);
+                }
+            }
+            else if (_playerActions["walking"].Active)
+            {
+                _animator.SetBool("walking", true);
             }
             else
             {
-                _animator.SetBool("falling", true);
+                _animator.SetBool("idle", true);
             }
-        }
-        else if (_playerActions["walking"].Active)
-        {
-            _animator.SetBool("walking", true);
-        }
-        else
-        {
-            _animator.SetBool("idle", true);
-        }
 
-        // Reset all actions allowed status to their former state
-        ResetAll();
+            // Reset all actions allowed status to their former state
+            ResetAll();
+        }
     }
 
     // When the torchlight is changed, set the value of _deathsDoor
@@ -206,6 +232,7 @@ public class PlayerActionController : MonoBehaviour
     // Set all action's allowances to the input value
     public void SetAll(bool value)
     {
+        _stunned = !value;
         foreach (KeyValuePair<string, PlayerAction> kvp in _playerActions)
         {
             _playerActions[kvp.Key].allowed = value;
@@ -217,13 +244,11 @@ public class PlayerActionController : MonoBehaviour
     {
         // Set all animator parameters to false
         foreach (AnimatorControllerParameter parameter in _animator.parameters)
-        {            
-            _animator.SetBool(parameter.name, false);            
+        {
+            _animator.SetBool(parameter.name, false);
         }
         // Pass the player's death to the animator
         _animator.SetBool("dying", true);
-        // TEMPORARY: Make the player turn red
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         // Disable this script
         this.enabled = false;
     }
