@@ -251,6 +251,12 @@ Next, open the project folder through Unity Hub with the version of Unity specif
 
 [Zachary McDonnell](https://www.instagram.com/_zachmcdonnell_/): Art Assets
 
+[Brullov](https://itch.io/profile/brullov/): Rock and Fire Art Assets
+
+[Aamatniekss](https://aamatniekss.itch.io/): Rock Wall Art Assets
+
+[FesliyanStudios](https://www.fesliyanstudios.com/): Music Assets
+
 ## Version History
 * 1.0
     * The last version history update is in progress! In short, I finished the game :P
