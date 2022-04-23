@@ -82,7 +82,7 @@ If the player dies by being hit at low torchlight, they lose the game. From the 
 
 ### Winning the Game
 
-If the player kill every enemy in the level, they win the game. From the game won screen, the player can restart or return to the main menu.
+If the player kills every enemy in the level, they win the game. From the game won screen, the player can restart or return to the main menu.
 
 ![Winning the Game](READMEGIFs/winningTheGame.gif)
 
