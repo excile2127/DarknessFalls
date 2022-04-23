@@ -212,6 +212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Large Wall 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8785097420803808287, guid: 8a4d840aa35b0a342822e96b20abb2d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a4d840aa35b0a342822e96b20abb2d5, type: 3}
 --- !u!4 &55441720 stripped
@@ -273,6 +277,10 @@ PrefabInstance:
     - target: {fileID: 4518297784299039461, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
       propertyPath: m_Name
       value: Rock Platform with Tall Pillars 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518297784299039461, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
@@ -353,6 +361,10 @@ PrefabInstance:
     - target: {fileID: 1631288281532647857, guid: 714baad18397fb44d94f33e062172b37, type: 3}
       propertyPath: m_Name
       value: Enemy Barrier 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631288281532647857, guid: 714baad18397fb44d94f33e062172b37, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5061595364303863060, guid: 714baad18397fb44d94f33e062172b37, type: 3}
       propertyPath: m_RootOrder
@@ -1065,6 +1077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock Platform with Tall Pillars 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4518297784299039461, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
 --- !u!4 &386369856 stripped
@@ -1192,6 +1208,10 @@ PrefabInstance:
     - target: {fileID: 8785097420803808287, guid: 8a4d840aa35b0a342822e96b20abb2d5, type: 3}
       propertyPath: m_Name
       value: Large Wall 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785097420803808287, guid: 8a4d840aa35b0a342822e96b20abb2d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a4d840aa35b0a342822e96b20abb2d5, type: 3}
@@ -2476,6 +2496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform with Short Pillars 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4518297784299039461, guid: 4c64305deb1bea347ad0da644d0169f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4518297784299039462, guid: 4c64305deb1bea347ad0da644d0169f2, type: 3}
       propertyPath: m_Size.y
       value: 1.28
@@ -2716,6 +2740,10 @@ PrefabInstance:
     - target: {fileID: 4518297784299039461, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
       propertyPath: m_Name
       value: Rock Platform with Tall Pillars 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518297784299039461, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
@@ -3254,6 +3282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform with Short Pillars 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4518297784299039461, guid: 4c64305deb1bea347ad0da644d0169f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4518297784299039462, guid: 4c64305deb1bea347ad0da644d0169f2, type: 3}
       propertyPath: m_Size.y
       value: 1.28
@@ -3586,6 +3618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform with Tall Pillars 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4518297784299039461, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
 --- !u!4 &1245989986 stripped
@@ -3739,6 +3775,10 @@ PrefabInstance:
     - target: {fileID: 7643715595613741446, guid: 76f9a84fdc1d1e74881c8f3319c369d6, type: 3}
       propertyPath: m_Name
       value: Large Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643715595613741446, guid: 76f9a84fdc1d1e74881c8f3319c369d6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76f9a84fdc1d1e74881c8f3319c369d6, type: 3}
@@ -3897,6 +3937,10 @@ PrefabInstance:
     - target: {fileID: 8000242939483029171, guid: 2287ca1f2115de441b4b63e7b1d7e2f9, type: 3}
       propertyPath: m_Name
       value: Small Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000242939483029171, guid: 2287ca1f2115de441b4b63e7b1d7e2f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2287ca1f2115de441b4b63e7b1d7e2f9, type: 3}
@@ -5383,7 +5427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2074581837
 Transform:
   m_ObjectHideFlags: 0
@@ -5603,6 +5647,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tall Pillar with Rubble
       objectReference: {fileID: 0}
+    - target: {fileID: 7767266479802798409, guid: 05626b45003ef1e4e8f652e2667fb8cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05626b45003ef1e4e8f652e2667fb8cc, type: 3}
 --- !u!1001 &4260462155644310342
@@ -5660,6 +5708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform with Tall Pillars 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4518297784299039461, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a16c764cbdbe64685f2765d4d8d4c0, type: 3}
 --- !u!1001 &7448658305630146947
@@ -5672,6 +5724,10 @@ PrefabInstance:
     - target: {fileID: 1631288281532647857, guid: 714baad18397fb44d94f33e062172b37, type: 3}
       propertyPath: m_Name
       value: Enemy Barrier 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631288281532647857, guid: 714baad18397fb44d94f33e062172b37, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5061595364303863060, guid: 714baad18397fb44d94f33e062172b37, type: 3}
       propertyPath: m_RootOrder
