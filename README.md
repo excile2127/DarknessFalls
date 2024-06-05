@@ -4,9 +4,9 @@ Darkness Falls is a small-scale, sidescrolling platformer developed in Unity C#.
 
 ## Description
 
-Darkness Falls is my capstone project for my Bachelor of Science in Computer Science at Montana Tech. As such, I don't intend for it to be a full-scale game at this time, but rather a demonstration of my knowledge of game engineering.
+Darkness Falls was my capstone project for my Bachelor of Science in Computer Science at Montana Tech. As such, it wasn't intended to be a full-scale game, but rather a demonstration of my knowledge of Unity.
 
-My goal was to implement the core aspects of side-scrolling platformers with a unique twist: having a single source of light, the player's torch, that replaces a health bar or another similar system. At the start of a level, the torch will be bright and illuminate most of the screen. Slowly over time, the torch's light will fade. Furthermore, taking a hit or using special skills with expediate this loss of light. However, slaying enemies will bolster the torch to allow the player to continue on. Lastly, if the player runs out of light, they lose.
+My goal was to implement the core aspects of side-scrolling platformers with a unique twist: having a single source of light, a torch, that acts as the player's health bar. At the start of a level, the torch is bright and illuminates most of the screen, but over time, its light fades. Furthermore, being hit or using special skills costs torchlight. However, slaying enemies replenishes lost light and allows the player to continue on. Lastly, if the player runs out of light, they lose.
 
 ## Build Archive
 
@@ -46,7 +46,7 @@ The player can dash by pressing Left Shift. During this time or shortly thereaft
 
 #### Normal Attacks
 
-The player can swing their sword by pressing J. During this time, if they press J again, they will buffer a second swing immidietely after the first. The first swing stuns enemies and the second swing can kill enemies if stunned (or stun and knock them back otherwise). However, double attacking costs the player some of their remaining torchlight.
+The player can swing their sword by pressing J. During this time, if they press J again, they will buffer a second swing immidiately after the first. The first swing stuns enemies and the second swing can kill enemies if stunned (or stun and knock them back otherwise). However, double attacking costs the player some of their remaining torchlight.
 
 ![Normal Attacks](READMEGIFs/normalAttacks.gif)
 
@@ -86,7 +86,7 @@ If the player kills every enemy in the level, they win the game. From the game w
 
 ![Winning the Game](READMEGIFs/winningTheGame.gif)
 
-## Roadmap
+## Alpha Roadmap
 
 - [x] Player Movement Actions
     - [x] Walking
@@ -170,17 +170,11 @@ If the player kills every enemy in the level, they win the game. From the game w
         - [x] Obstacles
         - [x] Enemy Placement
         - [x] Decorations
-- [ ] Dropped Mechanics and Functionality
+- [ ] Supported Future Features
     - [ ] Sound Effects
-        - Support is in place to play sound effects, but none are imported into the game.
-    - [ ] Flying Enemy
-        - Support is in place to make new enemy types, but enemy-specific functionality and assets are missing.
+    - [ ] Multiple Enemy Types
     - [ ] Multiple Levels
-        - Support is in place to add new levels, but none are designed.
     - [ ] UI Torch Meter
-        - Support is in place to communicate with a Torch UI element, but it doesn't exist.
-    - [ ] Options Menu
-        - Not even supported :P
 
 ## Opening the Game in the Unity Editor
 
@@ -207,7 +201,9 @@ Next, open the project folder through Unity Hub with the version of Unity specif
 
 ## Version History
 * 1.0
-    * I finished the game :P
+    * Added in majority of missing features planned for alpha
+    * Fixed numerous bugs
+    * Finalized the game for its alpha launch!
 * 0.6
     * Imported most background sprites
         * Background is completed barring a couple of adjustments and additions
