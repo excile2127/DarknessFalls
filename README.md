@@ -1,6 +1,6 @@
 # Darkness Falls
 
-Darkness Falls is a small-scale, sidescrolling platformer developed in Unity C#.
+Darkness Falls is a small-scale, side scrolling platformer developed in Unity C#.
 
 ## Description
 
